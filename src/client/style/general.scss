@@ -24,3 +24,15 @@ section{
     align-items: center;
 
 }
+
+.button {
+    text-transform: uppercase;
+    font-family: "Heebo", sans-serif;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.664);
+    padding: 0.7rem 1rem;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 10px;
+  }

@@ -2,13 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-
 module.exports = {
   entry: "./src/client/index.js",
   mode: "production",
-  optimization: {
-    minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
-  },
   module: {
     rules: [
       {
@@ -19,6 +15,10 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: "url-loader",
       },
     ],
   },
