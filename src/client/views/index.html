@@ -3,21 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;700;900&family=Open+Sans:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Travel App</title>
   </head>
   <body>
-    <nav>
+    <nav class="nav">
       <a href="/" class="logo">trawhere</a>
-      <ul>
-        <li class="nav-item"><a href="#landingpage" class="item-link"></a></li>
-        <li class="nav-item"><a href="#about" class="item-link"></a></li>
-        <li class="nav-item"><a href="#plan" class="item-link"></a></li>
+      <ul class="nav-items-list">
+        <li class="nav-item">
+          <a href="#landingpage" class="item-link">home</a>
+        </li>
+        <li class="nav-item"><a href="#about" class="item-link">about</a></li>
+        <li class="nav-item"><a href="#plan" class="item-link">plan</a></li>
       </ul>
     </nav>
     <main>
-        <section class="section landingpage" id="landingpage"> This is the landingpage</section>
-        <section class="section about" id="about"></section>
-        <section class="section plan" id="plan"></section>
+      <section class="landingpage" id="landingpage">
+        <div class="content">
+          <h1 class="title">
+            Welcome to TRAWHERE!
+          </h1>
+          <div class="subtitle">
+            <h4 class="description">
+              This website helps you plan your trips around the world. It
+              provide you the weather forecast for your destination date, some
+              images to see what you can visit, tips and trick and a lot more!
+            </h4>
+            <h3 class="call-to-action">what are you waiting for?</h3>
+            <button class="button">plan your trip</button>
+          </div>
+        </div>
+      </section>
+      <section class="about" id="about">This is the about page</section>
+      <section class="plan" id="plan">This is where you plan your trip</section>
     </main>
     <footer>created by <b>Alexandru Cotin</b></footer>
   </body>

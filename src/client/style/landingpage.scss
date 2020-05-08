@@ -1,0 +1,40 @@
+.landingpage {
+  background-image: url("../imgs/landingpage.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-direction: column;
+}
+
+.content {
+  .title {
+    font-family: "Heebo", sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: white;
+  }
+
+  .subtitle {
+    color: white;
+    .description {
+      width: 50%;
+    }
+
+    .call-to-action {
+      font-family: "Heebo", sans-serif;
+      margin: 3rem 0 1rem 0;
+    }
+
+    .button {
+      text-transform: uppercase;
+      font-family: "Heebo", sans-serif;
+      border: 0;
+      background-color: rgba(0, 0, 0, 0.664);
+      padding: 0.7rem 1rem;
+      color: rgb(255, 255, 255);
+      font-weight: 500;
+      font-size: 1rem;
+      border-radius: 10px;
+    }
+  }
+}
