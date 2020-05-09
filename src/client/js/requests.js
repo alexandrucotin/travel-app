@@ -11,6 +11,7 @@ async function getGeoLocation(data) {
       location.latitude = jsonRes.geonames[0].lat;
       location.longitude = jsonRes.geonames[0].lng;
       location.countryCode = jsonRes.geonames[0].countryCode;
+      location.countryName = jsonRes.geonames[0].countryName;
       console.log(location);
       return location;
     }

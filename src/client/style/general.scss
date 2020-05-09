@@ -16,16 +16,27 @@ a {
 ul {
   list-style: none;
 }
+.title {
+  font-family: "Heebo", sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+}
+.sub-title {
+  font-family: "Heebo", sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+}
 
+.white {
+  color: white;
+}
 section {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-form {
-  margin: 2rem;
-}
+
 
 .form-group {
   display: flex;

@@ -5,23 +5,30 @@ import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
 
-import { getCityAndCountry } from "./js/utils";
-import {getGeoLocation} from "./js/requests";
-
+import { getCityAndCountry, updateUI, getDates,countdown } from "./js/utils";
+import { getGeoLocation } from "./js/requests";
 
 const trip = {};
 
 const handleSearch = async (e) => {
   e.preventDefault();
-
+  const dates = getDates();
+  trip.end = dates.end;
+  trip.start = dates.start;
+  const countDown = countdown(trip.start, trip.end)
   const data = getCityAndCountry();
   trip.city = data.city;
-  getGeoLocation(data).then(data => {
-      trip.longitude = data.longitude
-      trip.latitude = data.latitude
-      trip.countryCode = data.countryCode
-      console.log("this is the promise: ",trip)
-  })
+
+  trip.countdown = countDown;
+  getGeoLocation(data)
+    .then((data) => {
+      trip.longitude = data.longitude;
+      trip.latitude = data.latitude;
+      trip.countryName = data.countryName;
+    })
+    .then(() => {
+      updateUI(trip);
+    });
 };
 
 document.getElementById("submitCity").addEventListener("click", handleSearch);
