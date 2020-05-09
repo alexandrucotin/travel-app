@@ -1,7 +1,7 @@
 const geonamesKey = "a.cotin96";
 
-async function getGeoLocation(data) {
-  const geonamesApi = `http://api.geonames.org/searchJSON?formatted=true&q=${data.city}&country=${data.country}&username=a.cotin96&style=full`;
+async function getGeoLocation(city, countryCode) {
+  const geonamesApi = `http://api.geonames.org/searchJSON?formatted=true&q=${city}&country=${countryCode}&username=a.cotin96&style=full`;
   console.log(geonamesApi);
   try {
     const response = await fetch(geonamesApi);
