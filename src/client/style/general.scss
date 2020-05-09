@@ -4,35 +4,57 @@
   box-sizing: border-box;
 }
 
-body{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
 }
-a{
-    text-decoration: none;
-    color: black;
-}
-
-ul{
-    list-style: none;
+a {
+  text-decoration: none;
+  color: black;
 }
 
-section{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ul {
+  list-style: none;
+}
 
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form {
+  margin: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 1.5rem 0;
+}
+
+label {
+  font-size: 0.7rem;
+}
+
+input {
+  line-height: 1.2rem;
+  font-size: 1rem;
+  border: 0;
+  border-bottom: 1px solid lightgrey;
+  &:focus {
+    outline: none;
+  }
 }
 
 .button {
-    text-transform: uppercase;
-    font-family: "Heebo", sans-serif;
-    border: 0;
-    background-color: rgba(0, 0, 0, 0.664);
-    padding: 0.7rem 1rem;
-    color: rgb(255, 255, 255);
-    font-weight: 500;
-    font-size: 1rem;
-    border-radius: 10px;
-  }
+  text-transform: uppercase;
+  font-family: "Heebo", sans-serif;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.664);
+  padding: 0.7rem 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 10px;
+}
