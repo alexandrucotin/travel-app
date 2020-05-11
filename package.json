@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "node src/server/server.js",
+    "proxy": "node src/server/proxy.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack-dev-server  --config webpack.dev.js --open"
   },

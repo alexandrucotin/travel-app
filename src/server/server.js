@@ -46,21 +46,27 @@ async function getLocation(req, res) {
   res.send(location);
 }
 
-// app.post("/weather", getWeather);
+app.post("/weather", getWeather);
 
-// async function getWeather(req, res) {
-//   const { lat, lng } = req.body;
-//   const weatherbitApi = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${lat}&lon=${lng}&key=${process.env.WEATHER_API_KEY}`;
-//   try {
-//     const response = await axios.get(weatherbitApi);
-//     if (response.ok) {
-//       console.log(response);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-//   res.status(202).send();
-// }
+async function getWeather(req, res) {
+  const { latitude, longitude } = req.body;
+  console.log(latitude, longitude)
+  const weatherbitApi = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_API_KEY}`;
+  try {
+    const response = await axios.get(weatherbitApi);
+    if (response) {
+      // const data = await response.data.geonames[0];
+      // location.latitude = data.lat;
+      // location.longitude = data.lng;
+      // location.countryCode = data.countryCode;
+      // location.countryName = data.countryName;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  // console.log("This is weather",location);
+  // res.sends(weather);
+}
 
 //starting the server
 const port = 8081;

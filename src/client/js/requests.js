@@ -1,6 +1,4 @@
-const geonamesKey = "a.cotin96";
-
-async function sendLocation(url="", data={}) {
+async function sendPostReq(url = "", data = {}) {
   const res = await fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -9,6 +7,12 @@ async function sendLocation(url="", data={}) {
     },
     body: JSON.stringify(data),
   });
+  try {
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-export { sendLocation };
+export { sendPostReq };
