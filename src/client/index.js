@@ -36,12 +36,12 @@ const handleSearch = async (e) => {
   const countryCode = searchCountryCode(trip.country);
   trip.countryCode = countryCode;
 
-  sendGeonames("/location",{city: trip.city, countryCode: trip.countryCode})
+  sendGeonames("http://localhost:8081/location",{city: trip.city, countryCode: trip.countryCode})
     .then((data) => {
       trip.longitude = data.longitude;
       trip.latitude = data.latitude;
       trip.countryName = data.countryName;
-      sendWeather("/weather", {latitude: trip.latitude, longitude: trip.longitude})
+      sendWeather("http://localhost:8081/weather", {latitude: trip.latitude, longitude: trip.longitude})
       .then((data) => {
         trip.weather = data;
         console.log(trip);
