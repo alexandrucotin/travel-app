@@ -1,4 +1,4 @@
-async function sendPostReq(url = "", data = {}) {
+async function sendGeonames(url = "", data = {}) {
   const res = await fetch(url, {
     method: "POST",
     credentials: "same-origin",
@@ -15,4 +15,21 @@ async function sendPostReq(url = "", data = {}) {
   }
 }
 
-export { sendPostReq };
+async function sendWeather(url = "", data = {}) {
+  const res = await fetch(url, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  try {
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export { sendGeonames, sendWeather };

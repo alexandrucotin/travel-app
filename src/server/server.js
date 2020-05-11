@@ -8,7 +8,7 @@ dotenv.config();
 
 //express
 const app = express();
-weather = {};
+weather = [];
 location = {};
 
 //middlewares
@@ -42,7 +42,6 @@ async function getLocation(req, res) {
   } catch (error) {
     console.log(error);
   }
-  console.log("This is location",location);
   res.send(location);
 }
 
@@ -50,22 +49,26 @@ app.post("/weather", getWeather);
 
 async function getWeather(req, res) {
   const { latitude, longitude } = req.body;
-  console.log(latitude, longitude)
   const weatherbitApi = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_API_KEY}`;
   try {
     const response = await axios.get(weatherbitApi);
     if (response) {
-      // const data = await response.data.geonames[0];
-      // location.latitude = data.lat;
-      // location.longitude = data.lng;
-      // location.countryCode = data.countryCode;
-      // location.countryName = data.countryName;
+      let day = {};
+      for (let i = 0; i < response.data.data.length; i++) {
+        const date = response.data.data[i].datetime;
+        const min_temp = response.data.data[i].min_temp
+        const max_temp = response.data.data[i].max_temp
+        const avg_temp = response.data.data[i].temp
+        day = {date : date, min_temp : min_temp, max_temp: max_temp, avg_temp : avg_temp};
+        weather.push(day)
+        day = {};
+      }
     }
   } catch (error) {
     console.log(error);
   }
-  // console.log("This is weather",location);
-  // res.sends(weather);
+  console.log("This is weather",weather);
+  res.send(weather);
 }
 
 //starting the server

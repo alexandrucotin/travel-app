@@ -6,11 +6,12 @@ import "./style/planpage.scss";
 import "./style/footer.scss";
 
 import { getCityAndCountry, updateUI, getDates,countdown } from "./js/utils";
-import { sendPostReq } from "./js/requests";
+import { sendGeonames, sendWeather } from "./js/requests";
 import {createSelect, searchCountryCode} from "./js/countries";
 
 
 const trip = {};
+const weather = [];
 
 createSelect();
 
@@ -35,15 +36,16 @@ const handleSearch = async (e) => {
   const countryCode = searchCountryCode(trip.country);
   trip.countryCode = countryCode;
 
-  sendPostReq("http://localhost:8081/location",{city: trip.city, countryCode: trip.countryCode})
+  sendGeonames("/location",{city: trip.city, countryCode: trip.countryCode})
     .then((data) => {
       trip.longitude = data.longitude;
       trip.latitude = data.latitude;
       trip.countryName = data.countryName;
-      console.log(trip);
-    })
-    .then(() => {
-      sendPostReq("http://localhost:3000/weather", trip.latitude, trip.longitude);
+      sendWeather("/weather", {latitude: trip.latitude, longitude: trip.longitude})
+      .then((data) => {
+        trip.weather = data;
+        console.log(trip);
+      })
     })
     .then(() => {
       updateUI(trip);
