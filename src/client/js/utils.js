@@ -21,19 +21,35 @@ const countdown = (start, end) => {
   return daysLeft;
 };
 
-const updateUI = (data) => {
-  const response = document.getElementById("response-content");
-  response.innerHTML = `<div>
-  <h2 class="sub-title">Summary of your trip </h2>
-  <div class="trip-info">
-  <h4> city: ${data.city} </h4>
-  <h4> longitude: ${data.longitude} </h4>
-  <h4> latitude: ${data.latitude} </h4>
-  <h4> country: ${data.countryName} </h4>
-  <h4> trip start: ${data.start} </h4>
-  <h4> trip end: ${data.end} </h4>
-  <h4> countdown: ${data.countdown} </h4>
-  </div>
-  </div>`;
+const insertWeather = (weatherList, tripLength, id) => {
+  console.log(tripLength);
+  const container = document.getElementById(id);
+  for (let i = 0; i < tripLength; i++) {
+    const day = document.createElement("div");
+    day.classList.add("day-info");
+    day.innerHTML = `<p class="date">${weatherList[i].date} </p>
+    <div class="temp-list">
+    <p class="temp">min <span>${weatherList[i].min_temp}</span></p>
+    <p class="temp">max <span>${weatherList[i].max_temp}</span></p>
+    </div>`;
+    container.appendChild(day);
+  }
+};
+
+const updateUI = (trip) => {
+  const response = document.getElementById("response-trips");
+  const myTrip = document.createElement("div");
+  myTrip.classList.add("trip-info");
+  myTrip.innerHTML = `
+    <div class="trip-details">
+    <p class="card-title"> <b>${trip.city}</b> in <b>${trip.countryName}</b> </p>
+    <p> The trip will start on ${trip.start} and you will return home on ${trip.end} </p>
+    <p class="countdown">departure in ${trip.countdown} days!</p>
+    </div>
+    <div class="trip-weather" id="${trip.city}-${trip.country}">
+    </div>
+    <button class="button"> Select </button>`;
+  response.appendChild(myTrip);
+  insertWeather(trip.weather, trip.countdown, `${trip.city}-${trip.country}`);
 };
 export { getCityAndCountry, countdown, updateUI, getDates };

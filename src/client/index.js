@@ -43,7 +43,6 @@ const handleSearch = async (e) => {
       trip.longitude = data.longitude;
       trip.latitude = data.latitude;
       trip.countryName = data.countryName;
-      console.log("Location trip is: ", trip);
     })
     .finally(() => {
       sendWeather("http://localhost:8081/weather", {
@@ -52,12 +51,11 @@ const handleSearch = async (e) => {
       })
         .then((data) => {
           trip.weather = data;
-          console.log("weather trip is: ", trip);
         })
         .finally(() => {
           trips.push(trip);
-          console.log("List of trips is: ", trips);
-          updateUI(trips[0]);
+          console.log(trip)
+          updateUI(trip);
           trip = {};
         })
         .catch((err) => {
