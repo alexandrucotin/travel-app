@@ -28,6 +28,8 @@ const insertWeather = (weatherList, tripLength, id) => {
     const day = document.createElement("div");
     day.classList.add("day-info");
     day.innerHTML = `<p class="date">${weatherList[i].date} </p>
+    <img class="weather-icon" src="./src/client/imgs/icons/${weatherList[i].icon}.png" alt="${weatherList[i].weather}">
+    <p class="date">${weatherList[i].weather} </p>
     <div class="temp-list">
     <p class="temp">min <span>${weatherList[i].min_temp}</span></p>
     <p class="temp">max <span>${weatherList[i].max_temp}</span></p>
@@ -42,8 +44,8 @@ const updateUI = (trip) => {
   myTrip.classList.add("trip-info");
   myTrip.innerHTML = `
     <div class="trip-details">
-    <p class="card-title"> <b>${trip.city}</b> in <b>${trip.countryName}</b> </p>
-    <p> The trip will start on ${trip.start} and you will return home on ${trip.end} </p>
+    <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
+    <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} </p>
     <p class="countdown">departure in ${trip.countdown} days!</p>
     </div>
     <div class="trip-weather" id="${trip.city}-${trip.country}">

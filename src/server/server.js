@@ -49,7 +49,6 @@ app.post("/weather", getWeather);
 async function getWeather(req, res) {
   const weather = [];
   const { latitude, longitude } = req.body;
-  console.log("THE LATITUDE IS: ",latitude, "THE LONGITUDE IS: ", longitude);
   const weatherbitApi = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_API_KEY}`;
   try {
     const response = await axios.get(weatherbitApi);
@@ -59,12 +58,14 @@ async function getWeather(req, res) {
         const date = response.data.data[i].datetime;
         const min_temp = response.data.data[i].min_temp;
         const max_temp = response.data.data[i].max_temp;
-        const avg_temp = response.data.data[i].temp;
+        const weatherDescription = response.data.data[i].weather.description;
+        const weatherIcon = response.data.data[i].weather.icon;
         day = {
           date: date,
+          weather: weatherDescription,
+          icon: weatherIcon,
           min_temp: min_temp,
-          max_temp: max_temp,
-          avg_temp: avg_temp,
+          max_temp: max_temp
         };
         weather.push(day);
         day = {};
