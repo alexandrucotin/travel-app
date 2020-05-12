@@ -5,7 +5,7 @@ import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
 
-import { getCityAndCountry, updateUI, getDates, countdown } from "./js/utils";
+import { getCityAndCountry, updateUI, getDates, tripLength } from "./js/utils";
 import { sendGeonames, sendWeather } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
 
@@ -23,8 +23,8 @@ const handleSearch = async (e) => {
   trip.start = dates.start;
 
   //countdown
-  const countDown = countdown(trip.start, trip.end);
-  trip.countdown = countDown;
+  const length = tripLength(trip.start, trip.end);
+  trip.tripLength = length;
 
   //get city and country
   const data = getCityAndCountry();

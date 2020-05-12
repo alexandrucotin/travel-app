@@ -13,18 +13,31 @@ const getDates = () => {
   return dates;
 };
 
-const countdown = (start, end) => {
+const tripLength = (start, end) => {
   const tripStart = Date.parse(start);
   const tripEnd = Date.parse(end);
   const countdown = tripEnd - tripStart;
+  const tripLength = Math.ceil(countdown / 86400000);
+  return tripLength;
+};
+
+const countdown = (start) => {
+  var d = new Date();
+  const currentDay = Date.parse(
+    `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+  );
+  const tripStart = Date.parse(start);
+  const countdown = tripStart - currentDay;
   const daysLeft = Math.ceil(countdown / 86400000);
   return daysLeft;
 };
 
-const insertWeather = (weatherList, tripLength, id) => {
-  console.log(tripLength);
+const insertWeather = (weatherList, id, dayStart, dayEnd) => {
+  console.log("day start normal:", dayStart, "Daysleft", dayEnd)
+  console.log("dayStart :", Date.parse(dayStart), "dayEnd ", Date.parse(dayEnd), "weatherList ", Date.parse(weatherList[0].date));
   const container = document.getElementById(id);
-  for (let i = 0; i < tripLength; i++) {
+  for (let i = 0; i < weatherList.length; i++) {
+    if(Date.parse(dayStart) <= Date.parse(weatherList[i].date) && Date.parse(weatherList[i].date)  <= Date.parse(dayEnd) ){
     const day = document.createElement("div");
     day.classList.add("day-info");
     day.innerHTML = `<p class="date">${weatherList[i].date} </p>
@@ -35,6 +48,7 @@ const insertWeather = (weatherList, tripLength, id) => {
     <p class="temp">max <span>${weatherList[i].max_temp}</span></p>
     </div>`;
     container.appendChild(day);
+    }
   }
 };
 
@@ -45,13 +59,13 @@ const updateUI = (trip) => {
   myTrip.innerHTML = `
     <div class="trip-details">
     <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
-    <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} </p>
-    <p class="countdown">departure in ${trip.countdown} days!</p>
+    <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} and it will last for ${trip.tripLength} days! </p>
+    <p class="countdown">departure in ${countdown(trip.start)} days!</p>
     </div>
     <div class="trip-weather" id="${trip.city}-${trip.country}">
     </div>
     <button class="button"> Select </button>`;
   response.appendChild(myTrip);
-  insertWeather(trip.weather, trip.countdown, `${trip.city}-${trip.country}`);
+  insertWeather(trip.weather, `${trip.city}-${trip.country}`, trip.start, trip.end);
 };
-export { getCityAndCountry, countdown, updateUI, getDates };
+export { getCityAndCountry, tripLength, updateUI, getDates, countdown };
