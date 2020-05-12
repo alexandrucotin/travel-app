@@ -8,8 +8,6 @@ dotenv.config();
 
 //express
 const app = express();
-weather = [];
-location = {};
 
 //middlewares
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +26,7 @@ app.get("/", (req, res) => {
 app.post("/location", getLocation);
 
 async function getLocation(req, res) {
+  const location = {};
   const { city, countryCode } = req.body;
   const geonamesApi = `http://api.geonames.org/searchJSON?formatted=true&name_equals=${city}&country=${countryCode}&username=${process.env.LOCATION_API_KEY}`;
   try {
@@ -48,7 +47,9 @@ async function getLocation(req, res) {
 app.post("/weather", getWeather);
 
 async function getWeather(req, res) {
+  const weather = [];
   const { latitude, longitude } = req.body;
+  console.log("THE LATITUDE IS: ",latitude, "THE LONGITUDE IS: ", longitude);
   const weatherbitApi = `https://api.weatherbit.io/v2.0/forecast/daily?&lat=${latitude}&lon=${longitude}&key=${process.env.WEATHER_API_KEY}`;
   try {
     const response = await axios.get(weatherbitApi);
@@ -56,18 +57,22 @@ async function getWeather(req, res) {
       let day = {};
       for (let i = 0; i < response.data.data.length; i++) {
         const date = response.data.data[i].datetime;
-        const min_temp = response.data.data[i].min_temp
-        const max_temp = response.data.data[i].max_temp
-        const avg_temp = response.data.data[i].temp
-        day = {date : date, min_temp : min_temp, max_temp: max_temp, avg_temp : avg_temp};
-        weather.push(day)
+        const min_temp = response.data.data[i].min_temp;
+        const max_temp = response.data.data[i].max_temp;
+        const avg_temp = response.data.data[i].temp;
+        day = {
+          date: date,
+          min_temp: min_temp,
+          max_temp: max_temp,
+          avg_temp: avg_temp,
+        };
+        weather.push(day);
         day = {};
       }
     }
   } catch (error) {
     console.log(error);
   }
-  console.log("This is weather",weather);
   res.send(weather);
 }
 

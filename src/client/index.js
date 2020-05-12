@@ -5,13 +5,12 @@ import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
 
-import { getCityAndCountry, updateUI, getDates,countdown } from "./js/utils";
+import { getCityAndCountry, updateUI, getDates, countdown } from "./js/utils";
 import { sendGeonames, sendWeather } from "./js/requests";
-import {createSelect, searchCountryCode} from "./js/countries";
+import { createSelect, searchCountryCode } from "./js/countries";
 
-
-const trip = {};
-const weather = [];
+const trips = [];
+let trip = {};
 
 createSelect();
 
@@ -24,7 +23,7 @@ const handleSearch = async (e) => {
   trip.start = dates.start;
 
   //countdown
-  const countDown = countdown(trip.start, trip.end)
+  const countDown = countdown(trip.start, trip.end);
   trip.countdown = countDown;
 
   //get city and country
@@ -36,19 +35,37 @@ const handleSearch = async (e) => {
   const countryCode = searchCountryCode(trip.country);
   trip.countryCode = countryCode;
 
-  sendGeonames("http://localhost:8081/location",{city: trip.city, countryCode: trip.countryCode})
+  sendGeonames("http://localhost:8081/location", {
+    city: trip.city,
+    countryCode: trip.countryCode,
+  })
     .then((data) => {
       trip.longitude = data.longitude;
       trip.latitude = data.latitude;
       trip.countryName = data.countryName;
-      sendWeather("http://localhost:8081/weather", {latitude: trip.latitude, longitude: trip.longitude})
-      .then((data) => {
-        trip.weather = data;
-        console.log(trip);
-      })
+      console.log("Location trip is: ", trip);
     })
-    .then(() => {
-      updateUI(trip);
+    .finally(() => {
+      sendWeather("http://localhost:8081/weather", {
+        latitude: trip.latitude,
+        longitude: trip.longitude,
+      })
+        .then((data) => {
+          trip.weather = data;
+          console.log("weather trip is: ", trip);
+        })
+        .finally(() => {
+          trips.push(trip);
+          console.log("List of trips is: ", trips);
+          updateUI(trips[0]);
+          trip = {};
+        })
+        .catch((err) => {
+          console.log("the error is : ", err);
+        });
+    })
+    .catch((err) => {
+      console.log("the error is : ", err);
     });
 };
 
