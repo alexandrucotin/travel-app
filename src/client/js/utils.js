@@ -40,13 +40,14 @@ const insertWeather = (weatherList, id, dayStart, dayEnd) => {
     ) {
       const day = document.createElement("div");
       day.classList.add("day-info");
-      day.innerHTML = `<p class="date">${weatherList[i].date} </p>
-    <img class="weather-icon" src="./src/client/imgs/icons/${weatherList[i].icon}.png" alt="${weatherList[i].weather}">
-    <p class="date">${weatherList[i].weather} </p>
-    <div class="temp-list">
-    <p class="temp">min <span>${weatherList[i].min_temp}</span></p>
-    <p class="temp">max <span>${weatherList[i].max_temp}</span></p>
-    </div>`;
+      day.innerHTML = `
+      <p class="date">${weatherList[i].date} </p>
+      <img class="weather-icon" src="./src/client/imgs/icons/${weatherList[i].icon}.png" alt="${weatherList[i].weather}">
+      <p class="date">${weatherList[i].weather} </p>
+      <div class="temp-list">
+        <p class="temp">min <span>${weatherList[i].min_temp}</span></p>
+        <p class="temp">max <span>${weatherList[i].max_temp}</span></p>
+      </div>`;
       container.appendChild(day);
     }
   }
@@ -68,19 +69,14 @@ const updateUI = (trip) => {
   myTrip.setAttribute("id", trip.tripId);
   myTrip.innerHTML = `
     <div class="trip-details">
-    <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
-    <p class="trip-description"> The trip will start on ${
-      trip.start
-    } and you will return home on ${trip.end} and it will last for ${
-    trip.tripLength
-  } days! </p>
-    <p class="countdown">departure in ${countdown(trip.start)} days!</p>
+      <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
+      <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} and it will last for ${trip.tripLength} days! </p>
+      <p class="countdown">departure in ${countdown(trip.start)} days!</p>
     </div>
-    <div class="trip-weather" id="${idWeather}">
-    </div>
+    <div class="trip-weather" id="${idWeather}"></div>
     <div class="buttons-list">
-    <button class="delete"> Delete </button>
-    <button class="select"> Select </button>
+      <button class="delete"> Delete </button>
+      <button class="select"> Select </button>
     </div>`;
   response.appendChild(myTrip);
   insertWeather(trip.weather, idWeather, trip.start, trip.end);
@@ -92,4 +88,5 @@ export {
   getDates,
   countdown,
   deleteTrip,
+  insertWeather
 };

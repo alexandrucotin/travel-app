@@ -5,6 +5,7 @@ import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
 import "./style/modal.scss";
+import "./style/slider.scss";
 
 import {
   getCityAndCountry,

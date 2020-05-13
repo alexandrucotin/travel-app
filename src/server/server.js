@@ -65,7 +65,7 @@ async function getWeather(req, res) {
           weather: weatherDescription,
           icon: weatherIcon,
           min_temp: min_temp,
-          max_temp: max_temp
+          max_temp: max_temp,
         };
         weather.push(day);
         day = {};
@@ -75,6 +75,27 @@ async function getWeather(req, res) {
     console.log(error);
   }
   res.send(weather);
+}
+
+app.post("/images", getImages);
+
+async function getImages(req, res) {
+  const images = [];
+  const { city, countryName } = req.body;
+  const pixabayApi = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${city}&image_type=photo&orientation=horizontal`;
+  try {
+    const response = await axios.get(pixabayApi);
+    if (response) {
+      for (let i = 0; i < 20; i++) {
+        images.push(response.data.hits[i].webformatURL);
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
+  console.log(images);
+  res.send(images);
 }
 
 //starting the server
