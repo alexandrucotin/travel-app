@@ -4,6 +4,7 @@ import "./style/landingpage.scss";
 import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
+import "./style/modal.scss";
 
 import {
   getCityAndCountry,
@@ -14,6 +15,7 @@ import {
 } from "./js/utils";
 import { sendGeonames, sendWeather } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
+import { showDetails, closeModal } from "./js/details";
 
 const trips = [];
 let trip = {};
@@ -22,29 +24,23 @@ createSelect();
 
 const handleSearch = async (e) => {
   e.preventDefault();
-
   //trip id
   const idTrip = Math.random().toString(36).substring(7);
   trip.tripId = idTrip;
-
   //gets dates
   const dates = getDates();
   trip.end = dates.end;
   trip.start = dates.start;
-
   //countdown
   const length = tripLength(trip.start, trip.end);
   trip.tripLength = length;
-
   //get city and country
   const data = getCityAndCountry();
   trip.city = data.city;
   trip.country = data.country;
-
   //add country code to trip
   const countryCode = searchCountryCode(trip.country);
   trip.countryCode = countryCode;
-
   sendGeonames("http://localhost:8081/location", {
     city: trip.city,
     countryCode: trip.countryCode,
@@ -74,7 +70,6 @@ const handleSearch = async (e) => {
     .catch((err) => {
       console.log("the error is : ", err);
     });
-
   console.log("Trips:", trips);
 };
 
@@ -87,9 +82,15 @@ const handleChoice = async (e) => {
         trips.splice(i, 1);
       }
     }
-
     deleteTrip(parentId);
     console.log("Trips after delete: ", trips);
+  } else {
+    for (let i = 0; i < trips.length; i++) {
+      if (trips[i].tripId === parentId) {
+        showDetails(parentId, trips[i]);
+        closeModal(`modal-${parentId}`);
+      }
+    }
   }
 };
 
