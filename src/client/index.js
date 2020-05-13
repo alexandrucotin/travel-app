@@ -5,7 +5,13 @@ import "./style/aboutpage.scss";
 import "./style/planpage.scss";
 import "./style/footer.scss";
 
-import { getCityAndCountry, updateUI, getDates, tripLength } from "./js/utils";
+import {
+  getCityAndCountry,
+  updateUI,
+  getDates,
+  tripLength,
+  deleteTrip,
+} from "./js/utils";
 import { sendGeonames, sendWeather } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
 
@@ -16,6 +22,10 @@ createSelect();
 
 const handleSearch = async (e) => {
   e.preventDefault();
+
+  //trip id
+  const idTrip = Math.random().toString(36).substring(7);
+  trip.tripId = idTrip;
 
   //gets dates
   const dates = getDates();
@@ -54,7 +64,6 @@ const handleSearch = async (e) => {
         })
         .finally(() => {
           trips.push(trip);
-          console.log(trip)
           updateUI(trip);
           trip = {};
         })
@@ -65,6 +74,26 @@ const handleSearch = async (e) => {
     .catch((err) => {
       console.log("the error is : ", err);
     });
+
+  console.log("Trips:", trips);
+};
+
+const handleChoice = async (e) => {
+  e.preventDefault();
+  const parentId = e.target.parentNode.parentNode.id;
+  if (e.target.classList[0] === "delete") {
+    for (let i = 0; i < trips.length; i++) {
+      if (trips[i].tripId === parentId) {
+        trips.splice(i, 1);
+      }
+    }
+
+    deleteTrip(parentId);
+    console.log("Trips after delete: ", trips);
+  }
 };
 
 document.getElementById("submitCity").addEventListener("click", handleSearch);
+document
+  .getElementById("response-trips")
+  .addEventListener("click", handleChoice);

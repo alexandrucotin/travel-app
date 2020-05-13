@@ -33,8 +33,6 @@ const countdown = (start) => {
 };
 
 const insertWeather = (weatherList, id, dayStart, dayEnd) => {
-  console.log("day start normal:", dayStart, "Daysleft", dayEnd)
-  console.log("dayStart :", Date.parse(dayStart), "dayEnd ", Date.parse(dayEnd), "weatherList ", Date.parse(weatherList[0].date));
   const container = document.getElementById(id);
   for (let i = 0; i < weatherList.length; i++) {
     if(Date.parse(dayStart) <= Date.parse(weatherList[i].date) && Date.parse(weatherList[i].date)  <= Date.parse(dayEnd) ){
@@ -52,20 +50,31 @@ const insertWeather = (weatherList, id, dayStart, dayEnd) => {
   }
 };
 
+const deleteTrip = (id) =>{
+  const trip = document.getElementById(id);
+  trip.remove()
+  console.log("trip deleted!")
+}
+
 const updateUI = (trip) => {
   const response = document.getElementById("response-trips");
   const myTrip = document.createElement("div");
+  const idWeather = Math.random().toString(36).substring(7);
   myTrip.classList.add("trip-info");
+  myTrip.setAttribute("id", trip.tripId);
   myTrip.innerHTML = `
     <div class="trip-details">
     <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
     <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} and it will last for ${trip.tripLength} days! </p>
     <p class="countdown">departure in ${countdown(trip.start)} days!</p>
     </div>
-    <div class="trip-weather" id="${trip.city}-${trip.country}">
+    <div class="trip-weather" id="${idWeather}">
     </div>
-    <button class="button"> Select </button>`;
+    <div class="buttons-list">
+    <button class="delete"> Delete </button>
+    <button class="select"> Select </button>
+    </div>`;
   response.appendChild(myTrip);
-  insertWeather(trip.weather, `${trip.city}-${trip.country}`, trip.start, trip.end);
+  insertWeather(trip.weather, idWeather, trip.start, trip.end);
 };
-export { getCityAndCountry, tripLength, updateUI, getDates, countdown };
+export { getCityAndCountry, tripLength, updateUI, getDates, countdown, deleteTrip };
