@@ -3,6 +3,7 @@
 }
 
 .graphic-landingpage-plane {
+  background-image: url(../imgs/aereo.png);
   position: absolute;
   z-index: -1;
   width: 24%;
@@ -11,6 +12,10 @@
 }
 
 .graphic-landingpage-map {
+  background-image: url(../imgs/mappa.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: absolute;
   z-index: -1;
   width: 60%;

@@ -24,19 +24,14 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|jpg)$/,
-        loader: "url-loader",
-      },
-      {
-        test: /\.svg$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              encoding: false,
-            },
+        test: /\.(png|jpg|svg)$/,
+        use: {
+          loader: "url-loader",
+          options: {
+            limit: 8000,
+            name: "[path][name].[ext]",
           },
-        ],
+        },
       },
     ],
   },
