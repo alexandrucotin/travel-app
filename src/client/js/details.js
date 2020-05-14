@@ -2,46 +2,58 @@ import { countdown, insertWeather } from "./utils";
 import { sendPicture } from "./requests";
 
 const carousel = () => {
-  const slider = document.getElementById("slideshow");
-  const carouselImages = document.querySelectorAll(".slider img");
-
-  //buttons
-  const prevButton = document.getElementById("prev-button");
-  const nextButton = document.getElementById("next-button");
-
+  const container = document.querySelector(".slider-container");
+  const slider = container.querySelector(".slider-container-sliders");
+  const sliderImages = container.querySelectorAll(
+    ".slider-container-sliders img"
+  );
+  const prevButton = document.querySelector("#prev-button");
+  const nextButton = document.querySelector("#next-button");
   let counter = 1;
-  const size = carouselImages[0].clientWidth;
-  slider.style.transform = 'translateX(' + (-size * counter) + 'px)';
+  console.log("slider images: ", sliderImages[0].clientWidth);
+  let width = 0
+  sliderImages[0].onload = () => {
+    width = sliderImages[0].width;
+    console.log("The width is: ",width);
+  }
+  slider.style.transform = "translateX(" + -width * counter + "px)";
 
   nextButton.addEventListener("click", () => {
+    console.log("Next button was pressed")
+    if (counter >= sliderImages.length - 1) return;
     slider.style.transition = "transform 0.4s ease-in-out";
     counter++;
-    slider.style.transform = "translateX(" + -size * counter + "px)";
+    slider.style.transform = "translateX(" + -width * counter + "px)";
   });
+
   prevButton.addEventListener("click", () => {
+    console.log("Prev button was pressed")
+    if (counter <= 0) return;
     slider.style.transition = "transform 0.4s ease-in-out";
     counter--;
-    slider.style.transform = "translateX(" + -size * counter + "px)";
+    slider.style.transform = "translateX(" + `${-width * counter}` + "px)";
   });
 
   slider.addEventListener("transitionend", () => {
-    if (carouselImages[counter].id === "lastClone") {
-      slider.style.transform = "none";
-      counter = carouselImages.length - 2;
-      slider.style.transform = "translateX(" + -size * counter + "px)";
+    if (sliderImages[counter].id === "lastClone") {
+      slider.style.transition = "none";
+      counter = sliderImages.length - 2;
+      console.log(counter);
+      slider.style.transform = "translateX(" + `${-width * counter}` + "px)";
     }
-    if (carouselImages[counter].id === "firstClone") {
-      slider.style.transform = "none";
-      counter = carouselImages.length - counter;
-      slider.style.transform = "translateX(" + -size * counter + "px)";
+    if (sliderImages[counter].id === "firstClone") {
+      slider.style.transition = "none";
+      counter = sliderImages.length - counter;
+      console.log(counter);
+      slider.style.transform = "translateX(" + `${-width * counter}` + "px)";
     }
   });
 };
 
-const insertSlideShow = (id, images) => {
-  const slider = document.getElementById(id);
+const createSlider = (id, images) => {
+  const sliderContainer = document.getElementById(id);
   const slideShow = document.createElement("div");
-  slideShow.classList.add("slide");
+  slideShow.classList.add("slider-container-sliders");
   slideShow.setAttribute("id", "slideshow");
   console.log(images.length);
 
@@ -63,16 +75,13 @@ const insertSlideShow = (id, images) => {
   //appending the first img of the slider to the last position
   const firstImg = document.createElement("img");
   firstImg.classList.add("img");
-  firstImg.setAttribute("src", images[images.length - 1]);
+  firstImg.setAttribute("src", images[0]);
   firstImg.setAttribute("id", "firstClone");
   slideShow.appendChild(firstImg);
 
   //appending the images to the slider
-  slider.appendChild(slideShow);
-
-  carousel();
+  sliderContainer.appendChild(slideShow);
 };
-
 
 // CREATED MODAL //
 const showDetails = (id, trip) => {
@@ -81,7 +90,7 @@ const showDetails = (id, trip) => {
   modal.setAttribute("id", `modal-${id}`);
   modal.innerHTML = `
     <div class="modal-container">
-        <div class="slider" id="slider-${trip.tripId}"></div>
+        <div class="slider-container" id="slider-${trip.tripId}"></div>
         <button id="prev-button">Prev</button>
         <button id="next-button">Next</button>
         <h1 class="modal-title"> <b>${trip.city}</b> , <b>${
@@ -107,9 +116,13 @@ const showDetails = (id, trip) => {
   sendPicture("http://localhost:8081/images", {
     city: trip.city,
     countryName: trip.country,
-  }).then((data) => {
-    insertSlideShow(`slider-${trip.tripId}`, data);
-  });
+  })
+    .then((data) => {
+      createSlider(`slider-${trip.tripId}`, data);
+    })
+    .finally(() => {
+      carousel();
+    });
   //
 };
 
