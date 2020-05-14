@@ -6,14 +6,16 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0,0,0,0.7);
+  background: white;
+  box-shadow:  20px 20px 60px #d9d9d9, 
+               -20px -20px 60px #ffffff;
 
   .logo {
     font-family: "Heebo", sans-serif;
     font-size: 2rem;
     font-weight: 900;
     margin: 0 1.5rem;
-    color: white;
+    color: #f25757;
   }
   .nav-items-list {
     display: flex;
@@ -23,7 +25,6 @@
       margin: 0 1.5rem;
 
       .item-link {
-        color: white;
       }
     }
   }
