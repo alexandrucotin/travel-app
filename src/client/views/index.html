@@ -23,8 +23,14 @@
     </nav>
     <main>
       <section class="landingpage" id="landingpage">
-        <img src="./src/client/imgs/aereo.png" class="graphic-landingpage-plane">
-        <img src="./src/client/imgs/mappa.png" class="graphic-landingpage-map">
+        <img
+          src="./src/client/imgs/aereo.png"
+          class="graphic-landingpage-plane"
+        />
+        <img
+          src="./src/client/imgs/mappa.png"
+          class="graphic-landingpage-map"
+        />
         <div class="content">
           <h1 class="title">welcome to <span>trawhere!</span></h1>
           <div class="subtitle">
@@ -33,12 +39,52 @@
               provide you the weather forecast for your destination dates, some
               images to see what you can visit, tips and trick and a lot more!
             </h4>
-            <button class="button">Plan now</button>
+            <button class="button">plan now</button>
           </div>
         </div>
       </section>
       <section class="about" id="about">
-        This is the about page
+        <div class="container">
+          <ul class="list" id="feature-list">
+            <li id="country" class="list-item active">
+              <img
+                class="icon"
+                src="./src/client/imgs/icons_about/rosso/icona11.svg"
+              />choose country & city
+            </li>
+            <li id="date" class="list-item">
+              <img
+                class="icon"
+                src="./src/client/imgs/icons_about/rosso/icona22.svg"
+              />select the days
+            </li>
+            <li id="weather" class="list-item">
+              <img
+                class="icon"
+                src="./src/client/imgs/icons_about/rosso/icona33.svg"
+              />get the weather
+            </li>
+            <li id="pictures" class="list-item">
+              <img
+                class="icon"
+                src="./src/client/imgs/icons_about/rosso/icona44.svg"
+              />discover pictures
+            </li>
+            <li id="info" class="list-item">
+              <img
+                class="icon"
+                src="./src/client/imgs/icons_about/rosso/icona55.svg"
+              />receive info
+            </li>
+          </ul>
+        </div>
+        <div class="container container-text">
+          <h1 class="title" id="category-title">Countries and Cities</h1>
+          <p class="paragraph" id="category-description">
+            Select the country you want to visit from all the countries around
+            the world. Then type down the city you want to see.
+          </p>
+        </div>
       </section>
       <section class="plan" id="plan">
         <h1 class="title">Plan your trip!</h1>

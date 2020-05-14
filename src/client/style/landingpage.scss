@@ -2,15 +2,15 @@
   flex-direction: column;
 }
 
-.graphic-landingpage-plane{
+.graphic-landingpage-plane {
   position: absolute;
   z-index: -1;
   width: 24%;
-  left: 4.4%;
-  bottom: 17%;
+  left: 4.1%;
+  bottom: 17.2%;
 }
 
-.graphic-landingpage-map{
+.graphic-landingpage-map {
   position: absolute;
   z-index: -1;
   width: 60%;
@@ -39,8 +39,22 @@
 
     .button {
       margin-top: 3rem;
-      box-shadow: 10px -10px 30px #d9d9d9, -10px 10px 30px #ffffff;
+      box-shadow: inset 6px 6px 14px #ce4a4a, inset -6px -6px 14px #ff6464;
       font-weight: 700;
+      color: white;
+      background-color: #f25757;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        box-shadow:  6px 6px 20px #b0b0b0, 
+        -6px -6px 20px #ffffff;
+        cursor: pointer;
+        color: black;
+      }
     }
   }
 }

@@ -14,6 +14,7 @@ import {
   tripLength,
   deleteTrip,
 } from "./js/utils";
+import {changeContent} from "./js/about"
 import { sendGeonames, sendWeather } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
 import { showDetails, closeModal } from "./js/details";
@@ -95,7 +96,14 @@ const handleChoice = async (e) => {
   }
 };
 
+const handleSelection = (e) => {
+  e.preventDefault();
+  const targetId = e.target.id;
+  changeContent(targetId);
+}
+
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")
   .addEventListener("click", handleChoice);
+document.getElementById("feature-list").addEventListener("click", handleSelection)
