@@ -27,6 +27,17 @@ module.exports = {
         test: /\.(png|jpg)$/,
         loader: "url-loader",
       },
+      {
+        test: /\.svg$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              encoding: false,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
