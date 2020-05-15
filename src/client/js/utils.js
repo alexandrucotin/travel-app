@@ -64,9 +64,10 @@ const insertWeather = (weatherList, id, dayStart, dayEnd) => {
     ) {
       const day = document.createElement("div");
       day.classList.add("day-info");
+      const url = require(`../imgs/icons/${weatherList[i].icon}.png`).default;
       day.innerHTML = `
       <p class="date">${weatherList[i].date} </p>
-      <img class="weather-icon" src="./src/client/imgs/icons/${weatherList[i].icon}.png" alt="${weatherList[i].weather}">
+      <img class="weather-icon" src=${url} alt="${weatherList[i].weather}">
       <p class="date">${weatherList[i].weather} </p>
       <div class="temp-list">
         <p class="temp">min <span>${weatherList[i].min_temp}</span></p>
