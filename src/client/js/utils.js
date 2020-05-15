@@ -2,13 +2,13 @@ const loadImgs = () => {
   //MAP IMAGE CREATE
   const spanMap = document.getElementById("graphic-landingpage-map");
   const imgMap = document.createElement("img");
-  imgMap.setAttribute("src", require("../imgs/mappa.png"));
+  imgMap.setAttribute("src", require("../imgs/mappa.png").default);
   spanMap.appendChild(imgMap);
 
   //PLANE IMAGE CREATE
   const spanPlane = document.getElementById("graphic-landingpage-plane");
   const imgPlane = document.createElement("img");
-  imgPlane.setAttribute("src", require("../imgs/aereo.png"));
+  imgPlane.setAttribute("src", require("../imgs/aereo.png").default);
   spanPlane.appendChild(imgPlane);
 };
 
