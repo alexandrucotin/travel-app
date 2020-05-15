@@ -101,29 +101,30 @@
 
     .buttons-list{
       margin-top: 2rem;
-      .select {
-        background: #55b9f3;
-        margin:0 1rem;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-        color: white;
-        border: 0;
-        border-radius: 10px;
-      }
-  
-      .delete {
-        background-color: #f25757;
-        margin:0 1rem;
-        padding: 0.5rem 1.2rem;
-        font-size: 0.8rem;
-        color: white;
-        border: 0;
-        border-radius: 10px;
-      }
+      
     }
   }
 }
 
+.select {
+  background: #55b9f3;
+  margin:0 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+
+.delete {
+  background-color: #f25757;
+  margin:0 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
 .trip-details {
   .card-title {
     margin: 0 0 1.5rem 0;
@@ -146,11 +147,14 @@
 
 .trip-weather {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 
+  text-align: center;
+
   .day-info {
-    margin: 0 0.5rem;
+    margin: 1rem 0.5rem;
+  
 
     .date {
       font-weight: bold;

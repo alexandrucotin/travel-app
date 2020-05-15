@@ -106,8 +106,8 @@ const showDetails = (id, trip) => {
           <div class="trip-weather" id="weather-${id}"></div>
         </div>
         <div class="buttons-list">
-            <button class="close">close</button>
-            <button class="save">save</button>
+            <button class="delete">close</button>
+            <button class="select">save</button>
         </div>
     </div>
     `;
