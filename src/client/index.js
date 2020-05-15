@@ -14,7 +14,8 @@ import   {
   getDates,
   tripLength,
   deleteTrip,
-  loadImgs
+  loadImgs,
+  loadAboutIcons
 } from "./js/utils";
 import {changeContent} from "./js/about"
 import { sendGeonames, sendWeather } from "./js/requests";
@@ -107,6 +108,7 @@ const handleSelection = (e) => {
 }
 
 loadImgs();
+loadAboutIcons();
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")

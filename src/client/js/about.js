@@ -36,7 +36,6 @@ const changeContent = (id) => {
   const description = document.getElementById("category-description");
   const list = document.getElementById("feature-list").children;
   const listItem = document.getElementById(id);
-  console.log(list.childElementCount);
   for (let i = 0; i < list.length; i++) {
     if (list[i].classList.contains("active")) {
       list[i].classList.remove("active");

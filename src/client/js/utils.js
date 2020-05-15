@@ -8,6 +8,20 @@ const loadImgs = () => {
   mapImg.setAttribute("src", require("../imgs/mappa.png").default);
 };
 
+const loadAboutIcons = () => {
+  const countryIcon = document.getElementById("countryIcon")
+  countryIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona11.svg").default);
+  const datesIcon = document.getElementById("datesIcon")
+  datesIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona22.svg").default);
+  const weatherIcon = document.getElementById("weatherIcon")
+  weatherIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona33.svg").default);
+  const pictureIcon = document.getElementById("pictureIcon")
+  pictureIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona44.svg").default);
+  const infoIcon = document.getElementById("infoIcon")
+  infoIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona55.svg").default);
+
+};
+
 const getCityAndCountry = () => {
   const country = document.getElementById("countries").value;
   const city = document.getElementById("inputCity").value;
@@ -104,4 +118,5 @@ export {
   deleteTrip,
   insertWeather,
   loadImgs,
+  loadAboutIcons
 };
