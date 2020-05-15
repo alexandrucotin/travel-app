@@ -2,27 +2,21 @@
   flex-direction: column;
 }
 
-#graphic-landingpage-plane {
+.graphic-landingpage-plane {
   position: absolute;
   z-index: -1;
   left: 4.1%;
   bottom: 17.2%;
 
   width: 24%;
-  img{
-    width: 100%;
-  }
 }
 
-#graphic-landingpage-map {
+.graphic-landingpage-map {
   position: absolute;
   z-index: -1;
   right: 5%;
 
   width: 60%;
-  img{
-    max-width: 100%;
-  }
 }
 
 .content {
@@ -58,8 +52,7 @@
 
       &:hover {
         background: linear-gradient(145deg, #ffffff, #e6e6e6);
-        box-shadow:  6px 6px 20px #b0b0b0, 
-        -6px -6px 20px #ffffff;
+        box-shadow: 6px 6px 20px #b0b0b0, -6px -6px 20px #ffffff;
         cursor: pointer;
         color: black;
       }

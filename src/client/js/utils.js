@@ -1,15 +1,11 @@
 const loadImgs = () => {
-  //MAP IMAGE CREATE
-  const spanMap = document.getElementById("graphic-landingpage-map");
-  const imgMap = document.createElement("img");
-  imgMap.setAttribute("src", require("../imgs/mappa.png").default);
-  spanMap.appendChild(imgMap);
-
   //PLANE IMAGE CREATE
-  const spanPlane = document.getElementById("graphic-landingpage-plane");
-  const imgPlane = document.createElement("img");
-  imgPlane.setAttribute("src", require("../imgs/aereo.png").default);
-  spanPlane.appendChild(imgPlane);
+  const planeImg = document.getElementById("graphic-landingpage-plane")
+  planeImg.setAttribute("src", require("../imgs/aereo.png").default);
+
+  //MAP IMAGE CREATE
+  const mapImg = document.getElementById("graphic-landingpage-map")
+  mapImg.setAttribute("src", require("../imgs/mappa.png").default);
 };
 
 const getCityAndCountry = () => {
