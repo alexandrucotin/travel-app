@@ -1,9 +1,7 @@
 .about {
   background-color: #eee;
+  flex-direction: row-reverse;
 
-  .title {
-    text-align: right;
-  }
   .container {
     margin: 0 3rem;
   }
@@ -13,25 +11,27 @@
 }
 
 .container-text {
-  max-width: 30%;
+  max-width: 20%;
 
-  .title{
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
   }
 }
 
 .list {
+  width: 65%;
   .active {
-    border-radius: 50px;
+    border-radius: 20px;
     background: #ffffff;
-    box-shadow: inset 9px 9px 18px #d9d9d9, inset -9px -9px 18px #ffffff;
+    box-shadow: inset 9px 9px 10px #d9d9d9, inset -9px -9px 10px #ffffff;
   }
   .list-item {
     font-family: "Heebo", sans-serif;
-    padding: 1rem 0 1rem 2rem;
+    padding: 1rem;
     display: flex;
     align-items: center;
+    font-size: 1rem;
 
     &:hover {
       cursor: pointer;
@@ -45,4 +45,3 @@
 }
 
 // LOADING images
-
