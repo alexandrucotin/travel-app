@@ -129,38 +129,48 @@
 }
 
 .response-content .trip-info {
-  width: 33%;
-  padding: 5rem;
+  width: 24%;
+  padding: 4rem;
   margin: 1rem;
   text-align: center;
   border-radius: 50px;
   background: #ffffff;
   -webkit-box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
           box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.response-content .trip-info .select {
+.response-content .trip-info .buttons-list {
+  margin-top: 2rem;
+}
+
+.response-content .trip-info .buttons-list .select {
   background: #55b9f3;
-  margin: 1rem 1rem 0 1rem;
+  margin: 0 1rem;
   padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
   color: white;
   border: 0;
   border-radius: 10px;
-  -webkit-box-shadow: 7px 7px 14px #d6d6d6, -7px -7px 14px #ffffff;
-          box-shadow: 7px 7px 14px #d6d6d6, -7px -7px 14px #ffffff;
 }
 
-.response-content .trip-info .delete {
+.response-content .trip-info .buttons-list .delete {
   background-color: #f25757;
-  margin: 1rem 1rem 0 1rem;
+  margin: 0 1rem;
   padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
   color: white;
   border: 0;
   border-radius: 10px;
-  -webkit-box-shadow: 7px 7px 14px #d6d6d6, -7px -7px 14px #ffffff;
-          box-shadow: 7px 7px 14px #d6d6d6, -7px -7px 14px #ffffff;
 }
 
 .trip-details .card-title {
@@ -188,9 +198,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
