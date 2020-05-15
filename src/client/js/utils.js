@@ -1,3 +1,17 @@
+const loadImgs = () => {
+  //MAP IMAGE CREATE
+  const spanMap = document.getElementById("graphic-landingpage-map");
+  const imgMap = document.createElement("img");
+  imgMap.setAttribute("src", require("../imgs/mappa.png"));
+  spanMap.appendChild(imgMap);
+
+  //PLANE IMAGE CREATE
+  const spanPlane = document.getElementById("graphic-landingpage-plane");
+  const imgPlane = document.createElement("img");
+  imgPlane.setAttribute("src", require("../imgs/aereo.png"));
+  spanPlane.appendChild(imgPlane);
+};
+
 const getCityAndCountry = () => {
   const country = document.getElementById("countries").value;
   const city = document.getElementById("inputCity").value;
@@ -59,8 +73,6 @@ const deleteTrip = (id) => {
   console.log("trip deleted!");
 };
 
-
-
 const updateUI = (trip) => {
   const response = document.getElementById("response-trips");
   const myTrip = document.createElement("div");
@@ -69,8 +81,14 @@ const updateUI = (trip) => {
   myTrip.setAttribute("id", trip.tripId);
   myTrip.innerHTML = `
     <div class="trip-details">
-      <p class="card-title"> <b>${trip.city}</b> , <b>${trip.countryName}</b> </p>
-      <p class="trip-description"> The trip will start on ${trip.start} and you will return home on ${trip.end} and it will last for ${trip.tripLength} days! </p>
+      <p class="card-title"> <b>${trip.city}</b> , <b>${
+    trip.countryName
+  }</b> </p>
+      <p class="trip-description"> The trip will start on ${
+        trip.start
+      } and you will return home on ${trip.end} and it will last for ${
+    trip.tripLength
+  } days! </p>
       <p class="countdown">departure in ${countdown(trip.start)} days!</p>
     </div>
     <div class="trip-weather" id="${idWeather}"></div>
@@ -88,5 +106,6 @@ export {
   getDates,
   countdown,
   deleteTrip,
-  insertWeather
+  insertWeather,
+  loadImgs,
 };

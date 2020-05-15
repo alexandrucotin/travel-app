@@ -2,24 +2,27 @@
   flex-direction: column;
 }
 
-.graphic-landingpage-plane {
-  background-image: url(../imgs/aereo.png);
+#graphic-landingpage-plane {
   position: absolute;
   z-index: -1;
-  width: 24%;
   left: 4.1%;
   bottom: 17.2%;
+
+  width: 24%;
+  img{
+    width: 100%;
+  }
 }
 
-.graphic-landingpage-map {
-  background-image: url(../imgs/mappa.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+#graphic-landingpage-map {
   position: absolute;
   z-index: -1;
-  width: 60%;
   right: 5%;
+
+  width: 60%;
+  img{
+    max-width: 100%;
+  }
 }
 
 .content {

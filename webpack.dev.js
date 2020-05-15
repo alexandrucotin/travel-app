@@ -24,14 +24,15 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(png|jpg|svg)$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            limit: 8000,
-            name: "[path][name].[ext]",
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
           },
-        },
+        ],
       },
     ],
   },

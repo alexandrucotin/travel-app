@@ -7,12 +7,14 @@ import "./style/footer.scss";
 import "./style/modal.scss";
 import "./style/slider.scss";
 
-import {
+
+import   {
   getCityAndCountry,
   updateUI,
   getDates,
   tripLength,
   deleteTrip,
+  loadImgs
 } from "./js/utils";
 import {changeContent} from "./js/about"
 import { sendGeonames, sendWeather } from "./js/requests";
@@ -21,6 +23,8 @@ import { showDetails, closeModal } from "./js/details";
 
 const trips = [];
 let trip = {};
+
+
 
 createSelect();
 
@@ -102,6 +106,7 @@ const handleSelection = (e) => {
   changeContent(targetId);
 }
 
+loadImgs();
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")
