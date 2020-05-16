@@ -7,25 +7,22 @@ import "./style/footer.scss";
 import "./style/modal.scss";
 import "./style/slider.scss";
 
-
-import   {
+import {
   getCityAndCountry,
   updateUI,
   getDates,
   tripLength,
   deleteTrip,
   loadImgs,
-  loadAboutIcons
+  loadAboutIcons,
 } from "./js/utils";
-import {changeContent} from "./js/about"
-import { sendGeonames, sendWeather } from "./js/requests";
+import { changeContent } from "./js/about";
+import { sendGeonames, sendWeather, sendCountries } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
 import { showDetails, closeModal } from "./js/details";
 
 const trips = [];
 let trip = {};
-
-
 
 createSelect();
 
@@ -77,7 +74,6 @@ const handleSearch = async (e) => {
     .catch((err) => {
       console.log("the error is : ", err);
     });
-  console.log("Trips:", trips);
 };
 
 const handleChoice = async (e) => {
@@ -94,8 +90,16 @@ const handleChoice = async (e) => {
   } else {
     for (let i = 0; i < trips.length; i++) {
       if (trips[i].tripId === parentId) {
-        showDetails(parentId, trips[i]);
-        closeModal(`modal-${parentId}`);
+        console.log("the trip is: ", trips[i]);
+        sendCountries("http://localhost:8081/countries", {
+          countryName: trips[i].countryName,
+        }).then((data) => {
+          trips[i].countryInfo = data;
+          console.log(trips[i]);
+
+          showDetails(parentId, trips[i]);
+          closeModal(`modal-${parentId}`);
+        });
       }
     }
   }
@@ -105,7 +109,7 @@ const handleSelection = (e) => {
   e.preventDefault();
   const targetId = e.target.id;
   changeContent(targetId);
-}
+};
 
 loadImgs();
 loadAboutIcons();
@@ -113,4 +117,6 @@ document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")
   .addEventListener("click", handleChoice);
-document.getElementById("feature-list").addEventListener("click", handleSelection)
+document
+  .getElementById("feature-list")
+  .addEventListener("click", handleSelection);

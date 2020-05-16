@@ -9,7 +9,6 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
@@ -18,9 +17,9 @@
   background-color: white;
   padding: 3rem;
   border-radius: 40px;
-
+  display: flex;
   .modal-title {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0 0 0;
   }
 
   .modal-content {
@@ -33,17 +32,80 @@
       background-color: #f25757;
       border-radius: 10px;
       padding: 0.5rem 0;
+      color: white;
     }
 
     .trip-description {
       margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .trip-weather{
+        justify-content: unset;
     }
   }
 
-  .buttons-list{
+  .buttons-list {
     margin-top: 1rem;
-    text-align: center;
+
+    .delete{
+      padding: 0.6rem 2.2rem;
+      font-size: 1rem;
+      margin: 0 1rem 0 0;
+    }
+
+    .select{
+      padding: 0.6rem 2.2rem;
+      font-size: 1rem;
+    }
   }
 }
 
+.modal-subtitle{
+  margin: 0 0 1rem 0;
+}
+.modal-32 {
+  width: 70%;
+}
+.modal-full {
+  padding: 0 0 0 3rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
+
+.leftBtn {
+  position: absolute;
+  top:50%;
+  left:0;
+  margin-left: 10px;
+  z-index: 100;
+}
+
+.leftBtn::after {
+font-weight: 900;
+content: '\f137';
+font-size: 2rem;
+color: white;
+opacity: 0.5;
+cursor: pointer;
+}
+
+.rightBtn {
+position: absolute;
+top:50%;
+right:0;
+margin-right: 10px;
+z-index: 100;
+}
+
+.rightBtn::after {
+font-weight: 900;
+content: '\f138';
+font-size: 2rem;
+color: white;
+opacity: 0.5;
+cursor: pointer;
+}

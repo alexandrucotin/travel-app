@@ -1,0 +1,12 @@
+.slider-container {
+  width: 640px;
+  overflow-x: hidden;
+}
+
+.slider-container .slider-container-sliders {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+/*# sourceMappingURL=slider.css.map */

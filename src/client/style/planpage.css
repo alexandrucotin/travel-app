@@ -1,0 +1,249 @@
+.plan {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  height: auto;
+  padding: 4rem 0;
+}
+
+.plan .plan-content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.title {
+  font-weight: normal;
+  font-size: 3.5rem;
+}
+
+.title span {
+  font-weight: 900;
+  font-size: 4rem;
+}
+
+.search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 4rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search .search-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search .search-content .form {
+  padding: 5rem;
+  border-radius: 50px;
+  background: #ffffff;
+  -webkit-box-shadow: 10px 10px 30px #d9d9d9, -20px -20px 60px #ffffff;
+          box-shadow: 10px 10px 30px #d9d9d9, -20px -20px 60px #ffffff;
+}
+
+.search .search-content .sub-title {
+  font-weight: 700;
+  text-transform: lowercase;
+  font-size: 1.5rem;
+}
+
+.search .search-content .location {
+  width: 50%;
+  padding: 4rem;
+}
+
+.search .search-content .time {
+  width: 50%;
+  padding: 4rem;
+}
+
+.search .button {
+  padding: 1rem 3rem;
+  border-radius: 20px;
+  background: #55b9f3;
+  -webkit-box-shadow: inset 6px 6px 14px #479bcc, inset -6px -6px 14px #63d7ff;
+          box-shadow: inset 6px 6px 14px #479bcc, inset -6px -6px 14px #63d7ff;
+  margin: 0 0 3rem 0;
+  color: white;
+}
+
+.search .button:focus {
+  outline: none;
+}
+
+.search .button:hover {
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  -webkit-box-shadow: 6px 6px 20px #b0b0b0, -6px -6px 20px #ffffff;
+          box-shadow: 6px 6px 20px #b0b0b0, -6px -6px 20px #ffffff;
+  cursor: pointer;
+  color: black;
+}
+
+.response-content {
+  margin-top: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.response-content .sub-title {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.response-content .response-trips {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.response-content .trip-info {
+  width: 30%;
+  padding: 4rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 50px;
+  background: #ffffff;
+  -webkit-box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
+          box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.response-content .trip-info .buttons-list {
+  margin-top: 2rem;
+}
+
+.select {
+  background: #55b9f3;
+  margin: 0 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+
+.delete {
+  background-color: #f25757;
+  margin: 0 1rem;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.8rem;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+
+.trip-details .card-title {
+  margin: 0 0 1.5rem 0;
+  text-transform: lowercase;
+}
+
+.trip-details .card-title b {
+  font-size: 1.6rem;
+}
+
+.trip-details .trip-description {
+  font-size: 0.8rem;
+}
+
+.trip-details .countdown {
+  padding: 0.7rem 0;
+  border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.trip-weather {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  text-align: center;
+}
+
+.trip-weather .day-info {
+  margin: 1rem 0.5rem;
+}
+
+.trip-weather .day-info .date {
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  font-size: 0.5rem;
+}
+
+.trip-weather .day-info .weather-icon {
+  width: 2rem;
+}
+
+.temp-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.temp-list .temp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 0.5rem;
+  text-align: center;
+  margin: 0 0.3rem;
+}
+
+.temp-list .temp span {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+/*# sourceMappingURL=planpage.css.map */

@@ -1,0 +1,135 @@
+.modal {
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-container {
+  background-color: white;
+  padding: 3rem;
+  border-radius: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal-container .modal-title {
+  margin: 1.5rem 0 0 0;
+}
+
+.modal-container .modal-content .countdown {
+  margin: 1rem 0;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  background-color: #f25757;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  color: white;
+}
+
+.modal-container .modal-content .trip-description {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.modal-container .modal-content .trip-weather {
+  -webkit-box-pack: unset;
+      -ms-flex-pack: unset;
+          justify-content: unset;
+}
+
+.modal-container .buttons-list {
+  margin-top: 1rem;
+}
+
+.modal-container .buttons-list .delete {
+  padding: 0.6rem 2.2rem;
+  font-size: 1rem;
+  margin: 0 1rem 0 0;
+}
+
+.modal-container .buttons-list .select {
+  padding: 0.6rem 2.2rem;
+  font-size: 1rem;
+}
+
+.modal-subtitle {
+  margin: 0 0 1rem 0;
+}
+
+.modal-32 {
+  width: 70%;
+}
+
+.modal-full {
+  padding: 0 0 0 3rem;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.leftBtn {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-left: 10px;
+  z-index: 100;
+}
+
+.leftBtn::after {
+  font-weight: 900;
+  content: '\f137';
+  font-size: 2rem;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.rightBtn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-right: 10px;
+  z-index: 100;
+}
+
+.rightBtn::after {
+  font-weight: 900;
+  content: '\f138';
+  font-size: 2rem;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+}
+/*# sourceMappingURL=modal.css.map */

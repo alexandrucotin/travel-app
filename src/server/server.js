@@ -23,6 +23,32 @@ app.get("/", (req, res) => {
   res.sendFiles("dist/index.html");
 });
 
+app.post("/countries", getCountries);
+
+async function getCountries(req, res) {
+  const countrySend = {};
+  const { countryName } = req.body;
+  const restcountries = `https://restcountries.eu/rest/v2/name/${countryName}?fullText=true`;
+  try {
+    const response = await axios.get(restcountries);
+    if (response) {
+      const data =  response.data;
+      countrySend.flag = data[0].flag;
+      countrySend.languages = data[0].languages[0].name;
+      countrySend.currencies = data[0].currencies[0].name;
+      countrySend.borders = data[0].borders;
+      countrySend.timezones = data[0].timezones[0];
+      countrySend.population = data[0].population;
+      countrySend.region = data[0].region;
+      countrySend.capital = data[0].capital;
+      console.log(countrySend);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  res.send(countrySend);
+}
+
 app.post("/location", getLocation);
 
 async function getLocation(req, res) {
@@ -81,7 +107,7 @@ app.post("/images", getImages);
 
 async function getImages(req, res) {
   const images = [];
-  const { city, countryName } = req.body;
+  const { city } = req.body;
   const pixabayApi = `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${city}&image_type=photo&orientation=horizontal`;
   try {
     const response = await axios.get(pixabayApi);
@@ -93,8 +119,6 @@ async function getImages(req, res) {
   } catch (error) {
     console.log(error);
   }
-
-  console.log(images);
   res.send(images);
 }
 
