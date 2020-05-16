@@ -4,48 +4,12 @@
   height: auto;
   padding: 4rem 0;
 
-  .plan-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-.title {
-  font-weight: normal;
-  font-size: 3.5rem;
-  span {
-    font-weight: 900;
-    font-size: 4rem;
-  }
-}
-
-.search {
-  display: flex;
-  flex-direction: column;
-  margin-top: 4rem;
-  align-items: center;
-  .search-content {
-    display: flex;
-    .form {
-      padding: 5rem;
-      border-radius: 50px;
-      background: #ffffff;
-      box-shadow: 10px 10px 30px #d9d9d9, -20px -20px 60px #ffffff;
-    }
-    .sub-title {
-      font-weight: 700;
-      text-transform: lowercase;
-      font-size: 1.5rem;
-    }
-    .location {
-      width: 50%;
-      padding: 4rem;
-    }
-    .time {
-      width: 50%;
-      padding: 4rem;
+  .title {
+    font-weight: normal;
+    font-size: 3.5rem;
+    span {
+      font-weight: 900;
+      font-size: 4rem;
     }
   }
 
@@ -70,37 +34,59 @@
   }
 }
 
-.response-content {
-  margin-top: 4rem;
+.search {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
 
-  .sub-title {
-    text-align: center;
-    margin: 2rem 0;
-  }
-  .response-trips {
+  .search-content {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap;
-  }
-
-  .trip-info {
-    width: 30%;
     padding: 4rem;
-    margin: 1rem;
-    text-align: center;
-    border-radius: 50px;
-    background: #ffffff;
-    box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 100%;
 
-    .buttons-list {
-      margin-top: 2rem;
+    .location {
+      width: 40%;
+      border-radius: 50px;
+      background: #ffffff;
+      box-shadow: 9px 9px 18px #dedede, -9px -9px 18px #ffffff;
     }
+    .time {
+      width: 40%;
+      border-radius: 50px;
+      background: #ffffff;
+      box-shadow: 9px 9px 18px #dedede, -9px -9px 18px #ffffff;
+    }
+
+    .form {
+      padding: 5rem;
+    }
+  }
+}
+
+.response-trips {
+  width: 100%;
+  margin-top: 4rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.trip-info {
+  width: 30%;
+  padding: 4rem;
+  margin: 1rem;
+  text-align: center;
+  border-radius: 50px;
+  background: #ffffff;
+  box-shadow: inset 8px 8px 30px #cccccc, inset -8px -8px 30px #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .buttons-list {
+    margin-top: 2rem;
   }
 }
 
@@ -147,7 +133,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
   text-align: center;
 
   .day-info {
@@ -185,57 +170,69 @@
     padding: 2rem;
     .title {
       font-size: 2rem;
+      margin: 1rem 0;
       span {
         font-size: 2.5rem;
       }
     }
 
-    .plan-content {
-      .search {
-        .search-content {
-          flex-direction: column;
+    .button{
+      padding: 0.5rem 1.5rem;
+      font-size: 11px;
+    }
+    .search-content {
+      padding: 0;
+      margin: 2rem 0;
+      flex-direction: column;
 
-          .location {
-            padding: 0rem 1rem;
-            width: 100%;
-            margin-bottom: 2rem;
+      .location {
+        width: 100%;
+        margin-bottom: 2rem;
 
-            .form {
-              padding: 1rem;
+        .form {
+          padding: 3rem;
 
-              .form-group {
-                select {
-                  font-size: 0.5rem;
-                }
-                label{
-                  font-size: 0.5rem;
-                }
-                input{
-                  font-size: unset;
-                }
-              }
-            }
+          label {
+            font-size: 0.5rem;
           }
-
-          .time {
-            padding: 0rem 1rem;
-            width: 100%;
-            margin-bottom: 2rem;
-            .dates {
-              .form {
-                padding: 1rem;
-  
-                .form-group {
-                  label{
-                    font-size: 0.5rem;
-                  }
-                  input{
-                    font-size: 0.7rem;
-                  }
-                }
-              }
-            }
+          select {
+            font-size: 11px;
           }
+          input {
+            line-height: unset;
+            font-size: 11px;
+          }
+        }
+      }
+
+      .time {
+        width: 100%;
+
+        .form {
+          padding: 3rem;
+
+          label {
+            font-size: 0.5rem;
+          }
+          input {
+            color: #afafaf;
+            line-height: unset;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+
+    .response-trips{
+      justify-content: unset;
+
+      .trip-info{
+        width: 100%;
+        padding: 3rem;
+        margin: 0;
+
+        .buttons-list{
+          display: flex;
         }
       }
     }
