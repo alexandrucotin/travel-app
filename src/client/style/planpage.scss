@@ -98,17 +98,15 @@
     flex-direction: column;
     justify-content: center;
 
-
-    .buttons-list{
+    .buttons-list {
       margin-top: 2rem;
-      
     }
   }
 }
 
 .select {
   background: #55b9f3;
-  margin:0 1rem;
+  margin: 0 1rem;
   padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
   color: white;
@@ -118,7 +116,7 @@
 
 .delete {
   background-color: #f25757;
-  margin:0 1rem;
+  margin: 0 1rem;
   padding: 0.5rem 1.2rem;
   font-size: 0.8rem;
   color: white;
@@ -154,7 +152,6 @@
 
   .day-info {
     margin: 1rem 0.5rem;
-  
 
     .date {
       font-weight: bold;
@@ -179,6 +176,68 @@
     span {
       font-size: 0.8rem;
       font-weight: bold;
+    }
+  }
+}
+
+@media (min-width: 0px) and (max-width: 750px) {
+  .plan {
+    padding: 2rem;
+    .title {
+      font-size: 2rem;
+      span {
+        font-size: 2.5rem;
+      }
+    }
+
+    .plan-content {
+      .search {
+        .search-content {
+          flex-direction: column;
+
+          .location {
+            padding: 0rem 1rem;
+            width: 100%;
+            margin-bottom: 2rem;
+
+            .form {
+              padding: 1rem;
+
+              .form-group {
+                select {
+                  font-size: 0.5rem;
+                }
+                label{
+                  font-size: 0.5rem;
+                }
+                input{
+                  font-size: unset;
+                }
+              }
+            }
+          }
+
+          .time {
+            padding: 0rem 1rem;
+            width: 100%;
+            margin-bottom: 2rem;
+            .dates {
+              .form {
+                padding: 1rem;
+  
+                .form-group {
+                  label{
+                    font-size: 0.5rem;
+                  }
+                  input{
+                    font-size: 0.7rem;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

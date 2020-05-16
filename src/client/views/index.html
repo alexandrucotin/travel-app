@@ -8,11 +8,19 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <title>Travel App</title>
   </head>
   <body>
     <nav class="nav">
       <a href="/" class="logo">trawhere</a>
+      <a href="javascript:void(0);" class="icon">
+        <i class="fa fa-bars"></i>
+      </a>
       <ul class="nav-items-list">
         <li class="nav-item">
           <a href="#landingpage" class="item-link">home</a>
@@ -36,45 +44,48 @@
         <div class="content">
           <h1 class="title">welcome to <span>trawhere!</span></h1>
           <div class="subtitle">
-            <h4 class="description">
+            <p class="description">
               This website helps you plan your trips around the world. It
               provide you the weather forecast for your destination dates, some
               images to see what you can visit, tips and trick and a lot more!
-            </h4>
-            <a href="#plan" class="button">plan now</a>
+            </p>
           </div>
+          <a href="#plan" class="button">plan now</a>
         </div>
       </section>
       <section class="about" id="about">
         <div class="container">
-          <ul class="list" id="feature-list">
-            <li id="country" class="list-item active">
-              <img id="countryIcon" class="icon" />choose country & city
-            </li>
-            <li id="date" class="list-item">
-              <img id="datesIcon" class="icon" />select the dates
-            </li>
-            <li id="weather" class="list-item">
-              <img id="weatherIcon" class="icon" />get the weather
-            </li>
-            <li id="pictures" class="list-item">
-              <img id="pictureIcon" class="icon" />discover pictures
-            </li>
-            <li id="info" class="list-item">
-              <img id="infoIcon" class="icon" />receive info
-            </li>
-          </ul>
-        </div>
-        <div class="container container-text">
-          <h1 class="title" id="category-title">Countries and Cities</h1>
-          <p class="paragraph" id="category-description">
-            Select the country you want to visit from all the countries around
-            the world. Then type down the city you want to see.
-          </p>
+
+          <div class="container-description">
+            <h1 class="title" id="category-title">Countries and Cities</h1>
+            <p class="paragraph" id="category-description">
+              Select the country you want to visit from all the countries around
+              the world. Then type down the city you want to see.
+            </p>
+          </div>
+          <div class="container-list">
+            <ul class="list" id="feature-list">
+              <li id="country" class="list-item active">
+                <img id="countryIcon" class="icon" />choose country & city
+              </li>
+              <li id="date" class="list-item">
+                <img id="datesIcon" class="icon" />select the dates
+              </li>
+              <li id="weather" class="list-item">
+                <img id="weatherIcon" class="icon" />get the weather
+              </li>
+              <li id="pictures" class="list-item">
+                <img id="pictureIcon" class="icon" />discover pictures
+              </li>
+              <li id="info" class="list-item">
+                <img id="infoIcon" class="icon" />receive info
+              </li>
+            </ul>
+          </div>
         </div>
       </section>
       <section class="plan" id="plan">
-        <h1 class="title">plan your <span>trip!</span></h1>
+        <h1 class="title">Plan your <span>trip!</span></h1>
         <div class="plan-content">
           <div class="search">
             <div class="search-content">

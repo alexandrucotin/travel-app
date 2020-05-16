@@ -1,17 +1,13 @@
 .about {
   background-color: #eee;
   flex-direction: row-reverse;
-
-  .container {
-    margin: 0 3rem;
-  }
   .paragraph {
     font-weight: lighter;
   }
 }
 
-.container-text {
-  max-width: 20%;
+.container-description {
+  width: 20%;
 
   .title {
     font-size: 3rem;
@@ -44,4 +40,38 @@
   }
 }
 
-// LOADING images
+
+@media (min-width: 0px) and (max-width: 750px) {
+  .about{
+
+    .container-description{
+      width: 100%;
+
+      .title{
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .paragraph{
+        font-size: 0.8rem;
+      }
+    }
+
+    .container-list{
+      margin-top: 2rem;
+      .list{
+        width: 100%;
+
+        .list-item{
+          font-size: 0.7rem;
+          padding: 0.8rem;
+
+          .icon{
+            width: 8%;
+            margin-left: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
