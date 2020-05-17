@@ -1,7 +1,8 @@
 import { countdown, insertWeather } from "./utils";
 import { sendPicture } from "./requests";
 
-const carousel = () => {
+// Function that enable the controls for the slider (prev/next slide)
+const sliderControls = () => {
   const container = document.querySelector(".slider-container");
   const slider = container.querySelector(".slider-container-sliders");
   const sliderImages = container.querySelectorAll(
@@ -46,6 +47,7 @@ const carousel = () => {
   });
 };
 
+//Function that appends all the images fetched from the PIXABAY api
 const createSlider = (id, images) => {
   const sliderContainer = document.getElementById(id);
   const slideShow = document.createElement("div");
@@ -90,29 +92,16 @@ const showDetails = (id, trip) => {
   modal.setAttribute("id", `modal-${id}`);
   console.log("the flag is: ", trip.countryInfo.flag);
   modal.innerHTML = `<div class="modal-container">
-  <div class="slideshow-full">
     <div class="slider-container" id="slider-${trip.tripId}">
     <span id="prev-button" class="leftBtn"></span>
     <span id="next-button" class="rightBtn"></span></div>
-  </div>
   <div class="modal-full">
     <h1 class="modal-title">
       ${trip.city},${trip.countryName}<span id="countryFlag"></span>
     </h1>
     <div class="modal-content">
       <h2 class="modal-subtitle">Some info</h2>
-      <p class="trip-description">
-        ${trip.countryName} is a country in ${trip.countryInfo.region}. The
-        timezone there is ${trip.countryInfo.timezones} and the population
-        speaks ${trip.countryInfo.languages}. This country also borders with
-        ${getBorders(trip.countryInfo.borders)} and the main currency is
-        ${trip.countryInfo.currencies}.The current population of
-        ${trip.countryName} is ${trip.countryInfo.population} and the capital of
-        the country is ${trip.countryInfo.capital}. The capital of
-        ${trip.countryName} is ${trip.countryInfo.capital} and the currencie
-        there is the ${trip.countryInfo.currencies}.The trip will start on
-        ${trip.start} and will end ${trip.tripLength} days later, on
-        ${trip.end}.
+      <p class="trip-description" id="trip-description">
       </p>
       <p class="countdown">departure in ${countdown(trip.start)} days!</p>
       <div class="trip-weather" id="weather-${id}"></div>
@@ -123,13 +112,28 @@ const showDetails = (id, trip) => {
     </div>
   </div>
 </div>`;
+
+  //append modal to the body
   document.body.appendChild(modal);
-  const countryFlag = document.getElementById("countryFlag");
-  countryFlag.setAttribute(
-    "style",
-    `background-image: url(${trip.countryInfo.flag})`
-  );
+
+  //Insert country description into modal
+  document.getElementById("trip-description").textContent = 
+  `${trip.countryName} is a country in ${trip.countryInfo.region}. The
+  timezone there is ${trip.countryInfo.timezones} and the population
+  speaks ${trip.countryInfo.languages}. This country also borders with
+  ${getBorders(trip.countryInfo.borders)} and the main currency is
+  ${trip.countryInfo.currencies}.The current population of
+  ${trip.countryName} is ${trip.countryInfo.population} and the capital of
+  the country is ${trip.countryInfo.capital}. The capital of
+  ${trip.countryName} is ${trip.countryInfo.capital} and the currencie
+  there is the ${trip.countryInfo.currencies}.The trip will start on
+  ${trip.start} and will end ${trip.tripLength} days later, on
+  ${trip.end}.`;
+
+  //Append weather forecast
   insertWeather(trip.weather, `weather-${id}`, trip.start, trip.end);
+
+  //Append slider
   sendPicture("http://localhost:8081/images", {
     city: trip.city,
   })
@@ -137,7 +141,7 @@ const showDetails = (id, trip) => {
       createSlider(`slider-${trip.tripId}`, data);
     })
     .finally(() => {
-      carousel();
+      sliderControls();
     });
   //
 };

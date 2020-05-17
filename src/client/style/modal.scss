@@ -18,6 +18,7 @@
   padding: 3rem;
   border-radius: 40px;
   display: flex;
+  width: 80%;
   .modal-title {
     margin: 1.5rem 0 0 0;
   }
@@ -86,7 +87,6 @@
 
 .leftBtn::after {
 font-weight: 900;
-content: '\f137';
 font-size: 2rem;
 color: white;
 opacity: 0.5;
@@ -103,7 +103,6 @@ z-index: 100;
 
 .rightBtn::after {
 font-weight: 900;
-content: '\f138';
 font-size: 2rem;
 color: white;
 opacity: 0.5;
