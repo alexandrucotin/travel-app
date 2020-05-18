@@ -71,7 +71,7 @@
 }
 
 .trip-info {
-  width: 30%;
+  width: 40%;
   padding: 4rem;
   margin: 1rem;
   text-align: center;
@@ -160,6 +160,12 @@
       font-weight: bold;
     }
   }
+}
+
+.display-error{
+  color: red;
+  margin: 0 3rem;
+  font-size: 0.7rem;
 }
 
 @media (min-width: 0px) and (max-width: 750px) {

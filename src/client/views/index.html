@@ -54,72 +54,70 @@
         </div>
       </section>
       <section class="about" id="about">
-          <div class="container-description">
-            <h1 class="title" id="category-title">Countries and Cities</h1>
-            <p class="paragraph" id="category-description">
-              Select the country you want to visit from all the countries around
-              the world. Then type down the city you want to see.
-            </p>
-          </div>
-          <div class="container-list">
-            <ul class="list" id="feature-list">
-              <li id="country" class="list-item active">
-                <img id="countryIcon" class="icon" />choose country & city
-              </li>
-              <li id="date" class="list-item">
-                <img id="datesIcon" class="icon" />select the dates
-              </li>
-              <li id="weather" class="list-item">
-                <img id="weatherIcon" class="icon" />get the weather
-              </li>
-              <li id="pictures" class="list-item">
-                <img id="pictureIcon" class="icon" />discover pictures
-              </li>
-              <li id="info" class="list-item">
-                <img id="infoIcon" class="icon" />receive info
-              </li>
-            </ul>
-          </div>
+        <div class="container-description">
+          <h1 class="title" id="category-title">Countries and Cities</h1>
+          <p class="paragraph" id="category-description">
+            Select the country you want to visit from all the countries around
+            the world. Then type down the city you want to see.
+          </p>
+        </div>
+        <div class="container-list">
+          <ul class="list" id="feature-list">
+            <li id="country" class="list-item active">
+              <img id="countryIcon" class="icon" />choose country & city
+            </li>
+            <li id="date" class="list-item">
+              <img id="datesIcon" class="icon" />select the dates
+            </li>
+            <li id="weather" class="list-item">
+              <img id="weatherIcon" class="icon" />get the weather
+            </li>
+            <li id="pictures" class="list-item">
+              <img id="pictureIcon" class="icon" />discover pictures
+            </li>
+            <li id="info" class="list-item">
+              <img id="infoIcon" class="icon" />receive info
+            </li>
+          </ul>
+        </div>
       </section>
       <section class="plan" id="plan">
         <h1 class="title">Plan your <span>trip!</span></h1>
-          <div class="search">
-            <div class="search-content">
-              <div class="location">
-                <form class="form">
-                  <div class="form-group">
-                    <label for="">Country</label>
-                    <select id="countries">
-                      <option value="destination"
-                        >Select your destination</option
-                      ></select
-                    >
-                  </div>
-                  <div class="form-group">
-                    <label for="">City</label>
-                    <input type="text" id="inputCity" />
-                  </div>
-                </form>
-              </div>
+        <div class="search" id="search-box">
+          <div class="search-content">
+            <div class="location">
+              <form class="form">
+                <div class="form-group">
+                  <label for="">Country</label>
+                  <select id="countries">
+                    <option value="destination">Select your destination</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="">City</label>
+                  <input type="text" id="inputCity" />
+                </div>
+              </form>
+            </div>
 
-              <div class="time">
-                <div class="form">
-                  <div class="form-group">
-                    <label>From</label>
-                    <input type="date" id="start-trip" name="from" />
-                  </div>
-                  <div class="form-group">
-                    <label>To</label>
-                    <input type="date" id="end-trip" name="to" />
-                  </div>
+            <div class="time">
+              <div class="form">
+                <div class="form-group">
+                  <label>From</label>
+                  <input type="date" id="start-trip" name="from" />
+                </div>
+                <div class="form-group">
+                  <label>To</label>
+                  <input type="date" id="end-trip" name="to" />
                 </div>
               </div>
             </div>
-
-            <button class="button" id="submitCity">search</button>
           </div>
 
-            <div class="response-trips" id="response-trips"></div>
+          <button class="button" id="submitCity">search</button>
+        </div>
+
+        <div class="response-trips" id="response-trips"></div>
       </section>
     </main>
     <footer>created by <b>Alexandru Cotin</b></footer>

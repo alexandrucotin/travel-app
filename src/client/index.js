@@ -7,17 +7,18 @@ import "./style/footer.scss";
 import "./style/modal.scss";
 import "./style/slider.scss";
 
+import { loadLandingpageImgs, loadAboutIcons } from "./js/loadImgs";
+
 import {
   getCityAndCountry,
   updateUI,
   getDates,
   tripLength,
   deleteTrip,
-  loadImgs,
-  loadAboutIcons,
+  displayError,
 } from "./js/utils";
 import { changeContent } from "./js/about";
-import { sendGeonames, sendWeather, sendCountries } from "./js/requests";
+import { postRequest } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
 import { showDetails, closeModal } from "./js/details";
 
@@ -28,52 +29,62 @@ createSelect();
 
 const handleSearch = async (e) => {
   e.preventDefault();
-  //trip id
+  //Added trip id
   const idTrip = Math.random().toString(36).substring(7);
   trip.tripId = idTrip;
-  //gets dates
+  //Added city and country
+  const place = getCityAndCountry();
+  trip.city = place.city;
+  trip.country = place.country;
+  //Added trip dates
   const dates = getDates();
   trip.end = dates.end;
   trip.start = dates.start;
   //countdown
   const length = tripLength(trip.start, trip.end);
   trip.tripLength = length;
-  //get city and country
-  const data = getCityAndCountry();
-  trip.city = data.city;
-  trip.country = data.country;
   //add country code to trip
   const countryCode = searchCountryCode(trip.country);
   trip.countryCode = countryCode;
-  sendGeonames("http://localhost:8081/location", {
-    city: trip.city,
-    countryCode: trip.countryCode,
-  })
-    .then((data) => {
-      trip.longitude = data.longitude;
-      trip.latitude = data.latitude;
-      trip.countryName = data.countryName;
+  if (!place.status || !dates.status) {
+    const searchBox = document.getElementById("search-box");
+    const errorMessage = displayError(`${place.message} ${dates.message}`);
+    searchBox.appendChild(errorMessage);
+  } else {
+    postRequest("http://localhost:8081/location", {
+      city: trip.city,
+      countryCode: trip.countryCode,
     })
-    .finally(() => {
-      sendWeather("http://localhost:8081/weather", {
-        latitude: trip.latitude,
-        longitude: trip.longitude,
+      .then((data) => {
+        if (data.error) {
+          const searchBox = document.getElementById("search-box");
+          const errorMessage = displayError(data.errorMessage);
+          searchBox.appendChild(errorMessage);
+        } else {
+          trip.longitude = data.longitude;
+          trip.latitude = data.latitude;
+          trip.countryName = data.countryName;
+          postRequest("http://localhost:8081/weather", {
+          latitude: trip.latitude,
+          longitude: trip.longitude,
+        })
+          .then((data) => {
+            trip.weather = data;
+          })
+          .finally(() => {
+            trips.push(trip);
+            updateUI(trip);
+            trip = {};
+          })
+          .catch((err) => {
+            console.log("the error is : ", err);
+          });
+        }
       })
-        .then((data) => {
-          trip.weather = data;
-        })
-        .finally(() => {
-          trips.push(trip);
-          updateUI(trip);
-          trip = {};
-        })
-        .catch((err) => {
-          console.log("the error is : ", err);
-        });
-    })
-    .catch((err) => {
-      console.log("the error is : ", err);
-    });
+      .catch((error) => {
+        console.log("GEONAMES ERROR : ", error);
+      });
+  }
 };
 
 const handleChoice = async (e) => {
@@ -91,7 +102,7 @@ const handleChoice = async (e) => {
     for (let i = 0; i < trips.length; i++) {
       if (trips[i].tripId === parentId) {
         console.log("the trip is: ", trips[i]);
-        sendCountries("http://localhost:8081/countries", {
+        postRequest("http://localhost:8081/countries", {
           countryName: trips[i].countryName,
         }).then((data) => {
           trips[i].countryInfo = data;
@@ -111,7 +122,7 @@ const handleSelection = (e) => {
   changeContent(targetId);
 };
 
-loadImgs();
+loadLandingpageImgs();
 loadAboutIcons();
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document

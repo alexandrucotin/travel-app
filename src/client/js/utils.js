@@ -1,39 +1,52 @@
-const loadImgs = () => {
-  //PLANE IMAGE CREATE
-  const planeImg = document.getElementById("graphic-landingpage-plane")
-  planeImg.setAttribute("src", require("../imgs/aereo.png").default);
-
-  //MAP IMAGE CREATE
-  const mapImg = document.getElementById("graphic-landingpage-map")
-  mapImg.setAttribute("src", require("../imgs/mappa.png").default);
-};
-
-const loadAboutIcons = () => {
-  const countryIcon = document.getElementById("countryIcon")
-  countryIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona11.svg").default);
-  const datesIcon = document.getElementById("datesIcon")
-  datesIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona22.svg").default);
-  const weatherIcon = document.getElementById("weatherIcon")
-  weatherIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona33.svg").default);
-  const pictureIcon = document.getElementById("pictureIcon")
-  pictureIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona44.svg").default);
-  const infoIcon = document.getElementById("infoIcon")
-  infoIcon.setAttribute("src", require("../imgs/icons_about/rosso/icona55.svg").default);
-
+const displayError = (text) => {
+  const error = document.createElement("p");
+  error.classList.add("display-error");
+  error.textContent = text;
+  setTimeout(() => {
+    error.parentNode.removeChild(error);
+  }, 4000);
+  return error;
 };
 
 const getCityAndCountry = () => {
   const country = document.getElementById("countries").value;
   const city = document.getElementById("inputCity").value;
-  const destination = { country: country, city: city };
-  return destination;
+  if (country === "destination" || city === "") {
+    const status = {
+      stutus: false,
+      message: "The country or the city are empty!"
+    }
+    return status;
+  } else {
+    const destination = {status:true, country: country, city: city, message:"" };
+    return destination;
+  }
 };
 
 const getDates = () => {
+  var d = new Date();
+  const currentDay = Date.parse(
+    `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
+  );
   const start = document.getElementById("start-trip").value;
   const end = document.getElementById("end-trip").value;
-  const dates = { start: start, end: end };
-  return dates;
+  if (start === "" || end === "") {
+    const status = {
+      stutus: false,
+      message: "The start day or the end day are empty!"
+    }
+    return status;
+  } else if (Date.parse(start) < currentDay || Date.parse(start) > Date.parse(end)) {
+    const status = {
+      stutus: false,
+      message: "The dates you've choose are selected incorrectly!"
+    }
+    return status;
+  }
+  else {
+    const dates = { status:true, start: start, end: end, message:"" };
+    return dates;
+  }
 };
 
 const tripLength = (start, end) => {
@@ -118,6 +131,5 @@ export {
   countdown,
   deleteTrip,
   insertWeather,
-  loadImgs,
-  loadAboutIcons
+  displayError,
 };

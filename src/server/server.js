@@ -32,7 +32,7 @@ async function getCountries(req, res) {
   try {
     const response = await axios.get(restcountries);
     if (response) {
-      const data =  response.data;
+      const data = response.data;
       countrySend.flag = data[0].flag;
       countrySend.languages = data[0].languages[0].name;
       countrySend.currencies = data[0].currencies[0].name;
@@ -64,10 +64,10 @@ async function getLocation(req, res) {
       location.countryCode = data.countryCode;
       location.countryName = data.countryName;
     }
+    res.send(location);
   } catch (error) {
-    console.log(error);
+    res.status(400).json({ error : true, errorMessage: "The city you put in doesn't exists or it isn't in the country you selected!"});
   }
-  res.send(location);
 }
 
 app.post("/weather", getWeather);

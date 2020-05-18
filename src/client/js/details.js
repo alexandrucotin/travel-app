@@ -1,5 +1,5 @@
 import { countdown, insertWeather } from "./utils";
-import { sendPicture } from "./requests";
+import { postRequest } from "./requests";
 
 // Function that enable the controls for the slider (prev/next slide)
 const sliderControls = () => {
@@ -134,7 +134,7 @@ const showDetails = (id, trip) => {
   insertWeather(trip.weather, `weather-${id}`, trip.start, trip.end);
 
   //Append slider
-  sendPicture("http://localhost:8081/images", {
+  postRequest("http://localhost:8081/images", {
     city: trip.city,
   })
     .then((data) => {

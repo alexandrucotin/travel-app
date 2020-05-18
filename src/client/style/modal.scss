@@ -41,28 +41,28 @@
       font-size: 0.9rem;
     }
 
-    .trip-weather{
-        justify-content: unset;
+    .trip-weather {
+      justify-content: unset;
     }
   }
 
   .buttons-list {
     margin-top: 1rem;
 
-    .delete{
+    .delete {
       padding: 0.6rem 2.2rem;
       font-size: 1rem;
       margin: 0 1rem 0 0;
     }
 
-    .select{
+    .select {
       padding: 0.6rem 2.2rem;
       font-size: 1rem;
     }
   }
 }
 
-.modal-subtitle{
+.modal-subtitle {
   margin: 0 0 1rem 0;
 }
 .modal-32 {
@@ -76,35 +76,62 @@
   justify-content: space-between;
 }
 
-
 .leftBtn {
   position: absolute;
-  top:50%;
-  left:0;
+  top: 50%;
+  left: 0;
   margin-left: 10px;
   z-index: 100;
 }
 
 .leftBtn::after {
-font-weight: 900;
-font-size: 2rem;
-color: white;
-opacity: 0.5;
-cursor: pointer;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
 }
 
 .rightBtn {
-position: absolute;
-top:50%;
-right:0;
-margin-right: 10px;
-z-index: 100;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-right: 10px;
+  z-index: 100;
 }
 
 .rightBtn::after {
-font-weight: 900;
-font-size: 2rem;
-color: white;
-opacity: 0.5;
-cursor: pointer;
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media (min-width: 0px) and (max-width: 750px) {
+  .modal-container {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem;
+
+    .modal-full {
+      padding: 0;
+      width: 100%;
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .modal-content {
+        .modal-subtitle {
+          font-size: 0.8rem;
+          margin: 1rem 0;
+        }
+
+        .trip-description {
+          font-size: 0.7;
+        }
+      }
+    }
+  }
 }
