@@ -66,7 +66,13 @@ async function getLocation(req, res) {
     }
     res.send(location);
   } catch (error) {
-    res.status(400).json({ error : true, errorMessage: "The city you put in doesn't exists or it isn't in the country you selected!"});
+    res
+      .status(400)
+      .json({
+        error: true,
+        errorMessage:
+          "The city you put in doesn't exists or it isn't in the country you selected!",
+      });
   }
 }
 

@@ -65,20 +65,20 @@ const handleSearch = async (e) => {
           trip.latitude = data.latitude;
           trip.countryName = data.countryName;
           postRequest("http://localhost:8081/weather", {
-          latitude: trip.latitude,
-          longitude: trip.longitude,
-        })
-          .then((data) => {
-            trip.weather = data;
+            latitude: trip.latitude,
+            longitude: trip.longitude,
           })
-          .finally(() => {
-            trips.push(trip);
-            updateUI(trip);
-            trip = {};
-          })
-          .catch((err) => {
-            console.log("the error is : ", err);
-          });
+            .then((data) => {
+              trip.weather = data;
+            })
+            .finally(() => {
+              trips.push(trip);
+              updateUI(trip);
+              trip = {};
+            })
+            .catch((err) => {
+              console.log("the error is : ", err);
+            });
         }
       })
       .catch((error) => {
@@ -107,9 +107,19 @@ const handleChoice = async (e) => {
         }).then((data) => {
           trips[i].countryInfo = data;
           console.log(trips[i]);
+          const screenSize = window.screen.width;
+          if (screenSize > 0 && screenSize <= 550) {
+            console.log(parentId);
+            showDetails(parentId, trips[i], "mobile");
+          } else if (screenSize > 550 && screenSize <= 1024) {
+            console.log("ZAOOO Schermo tablet")
+            showDetails(parentId, trips[i], "tablet");
+          } else {
 
-          showDetails(parentId, trips[i]);
-          closeModal(`modal-${parentId}`);
+            console.log("ZAOOO Schermo desktop")
+            showDetails(parentId, trips[i], "desktop");
+            closeModal(`modal-${parentId}`);
+          }
         });
       }
     }

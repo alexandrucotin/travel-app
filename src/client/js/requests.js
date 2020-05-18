@@ -14,6 +14,4 @@ async function postRequest(url = "", data = {}) {
     console.log(error);
   }
 }
-
-
 export { postRequest };

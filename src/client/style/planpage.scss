@@ -162,7 +162,7 @@
   }
 }
 
-.display-error{
+.display-error {
   color: red;
   margin: 0 3rem;
   font-size: 0.7rem;
@@ -239,11 +239,16 @@
 
       .trip-info {
         width: 100%;
-        padding: 3rem;
+        padding: 2rem;
         margin: 0;
+
+        .trip-description {
+          font-size: 0.7rem;
+        }
 
         .buttons-list {
           display: flex;
+          justify-content: center;
         }
       }
     }

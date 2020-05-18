@@ -108,7 +108,7 @@ const updateUI = (trip) => {
       <p class="card-title"> <b>${trip.city}</b> , <b>${
     trip.countryName
   }</b> </p>
-      <p class="trip-description"> The trip will start on ${
+      <p class="trip-description" id="description-${trip.tripId}"> The trip will start on ${
         trip.start
       } and you will return home on ${trip.end} and it will last for ${
     trip.tripLength
