@@ -6,6 +6,7 @@ import {
   countryDescriptionComponent,
 } from "./components";
 import { postRequest } from "./requests";
+import {createPdf} from "./utils"
 
 const closeModal = (modalId) => {
   var modal = document.getElementById(modalId);
@@ -20,6 +21,14 @@ const closeModal = (modalId) => {
     }
   };
 };
+
+const saveTrip = (modalId) => {
+  var span = document.getElementsByClassName("save")[0];
+  span.onclick = function () {
+    createPdf(modalId)
+  };
+};
+
 
 // Show details content
 const showTripDetails = (id, trip, type) => {
@@ -46,4 +55,4 @@ const showTripDetails = (id, trip, type) => {
   }
 };
 
-export { showTripDetails, closeModal };
+export { showTripDetails, closeModal,saveTrip };

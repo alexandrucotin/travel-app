@@ -16,12 +16,13 @@ import {
   tripLength,
   deleteTrip,
   displayError,
-  createPdf
+  createPdf,
+  burger,
 } from "./js/utils";
 import { changeContent } from "./js/about";
 import { postRequest } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
-import { showTripDetails, closeModal } from "./js/details";
+import { showTripDetails, closeModal, saveTrip } from "./js/details";
 
 const trips = [];
 let trip = {};
@@ -109,6 +110,7 @@ const handleChoice = async (e) => {
             console.log(trips[i]);
             showTripDetails(parentId, trips[i], "desktop");
             closeModal(`modal-${parentId}`);
+            saveTrip(`modal-${parentId}`);
           });
         }
       }
@@ -136,6 +138,8 @@ const handleChoice = async (e) => {
   }
 };
 
+
+
 //Change content on about section
 const handleSelection = (e) => {
   e.preventDefault();
@@ -150,6 +154,8 @@ loadAboutIcons();
 createSelect();
 
 //EventListeners for buttons
+
+document.getElementById("burger-icon").addEventListener("click", burger);
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")

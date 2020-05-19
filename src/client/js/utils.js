@@ -1,5 +1,14 @@
 import { weatherComponent, buttonsListComponent } from "./components";
 
+const burger = () => {
+  console.log("ZAOOOO")
+  const linkList = document.getElementById("link-list");
+  if (linkList.style.display === "flex") {
+    linkList.style.display = "none";
+  } else {
+    linkList.style.display = "flex";
+  }
+}
 const displayError = (text) => {
   const error = document.createElement("p");
   error.classList.add("display-error");
@@ -90,17 +99,9 @@ const deleteTrip = (id) => {
 const createPdf = (id) => {
   const trip = document.getElementById(id);
   const doc = new jsPDF();
-  doc.fromHTML(
-    trip,
-    15,
-    15,
-    {
-      width: 100,
-    },
-    function () {
-      doc.save("trip.pdf");
-    }
-  );
+  doc.addHTML(trip, function () {
+    doc.save("trip.pdf");
+  });
 };
 
 const updateUI = (trip) => {
@@ -137,4 +138,5 @@ export {
   deleteTrip,
   displayError,
   createPdf,
+  burger
 };

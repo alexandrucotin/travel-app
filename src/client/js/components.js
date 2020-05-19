@@ -137,7 +137,7 @@ const modalComponent = (trip, id) => {
         </div>
         <div class="buttons-list">
           <button class="delete" id="close-modal">close</button>
-          <button class="select">save</button>
+          <button class="save">save</button>
         </div>
       </div>
     </div>`;

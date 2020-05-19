@@ -7,8 +7,7 @@
   top: 0;
   left: 0;
   background: white;
-  box-shadow:  20px 20px 60px #d9d9d9, 
-               -20px -20px 60px #ffffff;
+  box-shadow: 20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff;
 
   .logo {
     font-family: "Heebo", sans-serif;
@@ -17,15 +16,34 @@
     margin: 0 1.5rem;
     color: #f25757;
   }
-  .nav-items-list {
+
+  .icon {
+    display: none;
+  }
+}
+
+.nav-items-list {
+  display: flex;
+  align-items: center;
+
+  .nav-item {
+    margin: 0 1.5rem;
+
+  }
+}
+
+@media(min-width: 0px) and (max-width:750px){
+  .nav{
     display: flex;
-    align-items: center;
-
-    .nav-item {
-      margin: 0 1.5rem;
-
-      .item-link {
-      }
+    flex-direction: column;
+    .nav-items-list {
+      display: none;
+    }
+    .icon{
+      display: unset;
+      position: absolute;
+      right: 1.8rem;
+      top:1.8rem;
     }
   }
 }
