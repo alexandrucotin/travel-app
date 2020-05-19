@@ -20,33 +20,30 @@ import {
 import { changeContent } from "./js/about";
 import { postRequest } from "./js/requests";
 import { createSelect, searchCountryCode } from "./js/countries";
-import { showDetails, closeModal } from "./js/details";
+import { showTripDetails, closeModal } from "./js/details";
 
 const trips = [];
 let trip = {};
 
-createSelect();
-
+//Handle for search button
 const handleSearch = async (e) => {
   e.preventDefault();
-  //Added trip id
+  //Added trip info
   const idTrip = Math.random().toString(36).substring(7);
-  trip.tripId = idTrip;
-  //Added city and country
-  const place = getCityAndCountry();
-  trip.city = place.city;
-  trip.country = place.country;
-  //Added trip dates
-  const dates = getDates();
-  trip.end = dates.end;
-  trip.start = dates.start;
-  //countdown
-  const length = tripLength(trip.start, trip.end);
-  trip.tripLength = length;
-  //add country code to trip
-  const countryCode = searchCountryCode(trip.country);
-  trip.countryCode = countryCode;
-  if (!place.status || !dates.status) {
+  const { city, country, placeStutus } = getCityAndCountry();
+  const { start, end, datesStatus } = getDates();
+  const length = tripLength(start, end);
+  const countryCode = searchCountryCode(country);
+  trip = {
+    tripId: idTrip,
+    country: country,
+    countryCode: countryCode,
+    city: city,
+    start: start,
+    end: end,
+    tripLength: length,
+  };
+  if (!placeStutus || !datesStatus) {
     const searchBox = document.getElementById("search-box");
     const errorMessage = displayError(`${place.message} ${dates.message}`);
     searchBox.appendChild(errorMessage);
@@ -87,53 +84,68 @@ const handleSearch = async (e) => {
   }
 };
 
+//Handle for buttons choices
 const handleChoice = async (e) => {
   e.preventDefault();
+  const screenSize = window.screen.width;
   const parentId = e.target.parentNode.parentNode.id;
-  if (e.target.classList[0] === "delete") {
-    for (let i = 0; i < trips.length; i++) {
-      if (trips[i].tripId === parentId) {
-        trips.splice(i, 1);
+  switch (e.target.classList[0]) {
+    case "delete":
+      for (let i = 0; i < trips.length; i++) {
+        if (trips[i].tripId === parentId) {
+          trips.splice(i, 1);
+        }
       }
-    }
-    deleteTrip(parentId);
-    console.log("Trips after delete: ", trips);
-  } else {
-    for (let i = 0; i < trips.length; i++) {
-      if (trips[i].tripId === parentId) {
-        console.log("the trip is: ", trips[i]);
-        postRequest("http://localhost:8081/countries", {
-          countryName: trips[i].countryName,
-        }).then((data) => {
-          trips[i].countryInfo = data;
-          console.log(trips[i]);
-          const screenSize = window.screen.width;
-          if (screenSize > 0 && screenSize <= 550) {
-            console.log(parentId);
-            showDetails(parentId, trips[i], "mobile");
-          } else if (screenSize > 550 && screenSize <= 1024) {
-            console.log("ZAOOO Schermo tablet")
-            showDetails(parentId, trips[i], "tablet");
-          } else {
-
-            console.log("ZAOOO Schermo desktop")
-            showDetails(parentId, trips[i], "desktop");
-            closeModal(`modal-${parentId}`);
+      deleteTrip(parentId);
+      break;
+    case "select":
+      if (screenSize > 1024) {
+        for (let i = 0; i < trips.length; i++) {
+          if (trips[i].tripId === parentId) {
+            postRequest("http://localhost:8081/countries", {
+              countryName: trips[i].countryName,
+            }).then((data) => {
+              trips[i].countryInfo = data;
+              console.log(trips[i]);
+              showTripDetails(parentId, trips[i], "desktop");
+              closeModal(`modal-${parentId}`);
+            });
           }
-        });
+        }
+      } else {
+        console.log("Mobile select!");
       }
-    }
+      break;
+    case "show-more":
+      for (let i = 0; i < trips.length; i++) {
+        if (trips[i].tripId === parentId) {
+          postRequest("http://localhost:8081/countries", {
+            countryName: trips[i].countryName,
+          }).then((data) => {
+            trips[i].countryInfo = data;
+            console.log(trips[i]);
+            showTripDetails(parentId, trips[i], "mobile");
+          });
+        }
+      }
   }
 };
 
+//Change content on about section
 const handleSelection = (e) => {
   e.preventDefault();
   const targetId = e.target.id;
   changeContent(targetId);
 };
 
+
+//Loading static images
 loadLandingpageImgs();
 loadAboutIcons();
+//Loading the countries list on Country dropdown
+createSelect();
+
+//EventListeners for buttons
 document.getElementById("submitCity").addEventListener("click", handleSearch);
 document
   .getElementById("response-trips")
