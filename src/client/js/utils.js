@@ -16,7 +16,7 @@ const getCityAndCountry = () => {
   if (country === "destination" || city === "") {
     const status = {
       placeStutus: false,
-      message: "The country or the city are empty!",
+      placeMessage: "The country or the city are empty!",
     };
     return status;
   } else {
@@ -24,7 +24,7 @@ const getCityAndCountry = () => {
       placeStutus: true,
       country: country,
       city: city,
-      message: "",
+      placeMessage: "",
     };
     return destination;
   }
@@ -40,7 +40,7 @@ const getDates = () => {
   if (start === "" || end === "") {
     const status = {
       datesStatus: false,
-      message: "The start day or the end day are empty!",
+      datesMessage: "The start day or the end day are empty!",
     };
     return status;
   } else if (
@@ -49,11 +49,16 @@ const getDates = () => {
   ) {
     const status = {
       datesStatus: false,
-      message: "The dates you've choose are selected incorrectly!",
+      datesMessage: "The dates you've choose are selected incorrectly!",
     };
     return status;
   } else {
-    const dates = { datesStatus: true, start: start, end: end, message: "" };
+    const dates = {
+      datesStatus: true,
+      start: start,
+      end: end,
+      datesMessage: "",
+    };
     return dates;
   }
 };
@@ -80,6 +85,22 @@ const countdown = (start) => {
 const deleteTrip = (id) => {
   const trip = document.getElementById(id);
   trip.remove();
+};
+
+const createPdf = (id) => {
+  const trip = document.getElementById(id);
+  const doc = new jsPDF();
+  doc.fromHTML(
+    trip,
+    15,
+    15,
+    {
+      width: 100,
+    },
+    function () {
+      doc.save("trip.pdf");
+    }
+  );
 };
 
 const updateUI = (trip) => {
@@ -115,4 +136,5 @@ export {
   countdown,
   deleteTrip,
   displayError,
+  createPdf,
 };

@@ -16,6 +16,7 @@ import {
   tripLength,
   deleteTrip,
   displayError,
+  createPdf
 } from "./js/utils";
 import { changeContent } from "./js/about";
 import { postRequest } from "./js/requests";
@@ -30,8 +31,8 @@ const handleSearch = async (e) => {
   e.preventDefault();
   //Added trip info
   const idTrip = Math.random().toString(36).substring(7);
-  const { city, country, placeStutus } = getCityAndCountry();
-  const { start, end, datesStatus } = getDates();
+  const { city, country, placeStutus, placeMessage } = getCityAndCountry();
+  const { start, end, datesStatus, datesMessage } = getDates();
   const length = tripLength(start, end);
   const countryCode = searchCountryCode(country);
   trip = {
@@ -43,9 +44,10 @@ const handleSearch = async (e) => {
     end: end,
     tripLength: length,
   };
+  console.log(trip);
   if (!placeStutus || !datesStatus) {
     const searchBox = document.getElementById("search-box");
-    const errorMessage = displayError(`${place.message} ${dates.message}`);
+    const errorMessage = displayError(`${placeMessage} ${datesMessage}`);
     searchBox.appendChild(errorMessage);
   } else {
     postRequest("http://localhost:8081/location", {
@@ -58,9 +60,9 @@ const handleSearch = async (e) => {
           const errorMessage = displayError(data.errorMessage);
           searchBox.appendChild(errorMessage);
         } else {
-          trip.longitude = data.longitude;
-          trip.latitude = data.latitude;
-          trip.countryName = data.countryName;
+          (trip.longitude = data.longitude),
+            (trip.latitude = data.latitude),
+            (trip.countryName = data.countryName);
           postRequest("http://localhost:8081/weather", {
             latitude: trip.latitude,
             longitude: trip.longitude,
@@ -74,12 +76,12 @@ const handleSearch = async (e) => {
               trip = {};
             })
             .catch((err) => {
-              console.log("the error is : ", err);
+              console.log("The error is : ", err);
             });
         }
       })
       .catch((error) => {
-        console.log("GEONAMES ERROR : ", error);
+        console.log("The error is: ", error);
       });
   }
 };
@@ -87,7 +89,6 @@ const handleSearch = async (e) => {
 //Handle for buttons choices
 const handleChoice = async (e) => {
   e.preventDefault();
-  const screenSize = window.screen.width;
   const parentId = e.target.parentNode.parentNode.id;
   switch (e.target.classList[0]) {
     case "delete":
@@ -99,21 +100,25 @@ const handleChoice = async (e) => {
       deleteTrip(parentId);
       break;
     case "select":
-      if (screenSize > 1024) {
-        for (let i = 0; i < trips.length; i++) {
-          if (trips[i].tripId === parentId) {
-            postRequest("http://localhost:8081/countries", {
-              countryName: trips[i].countryName,
-            }).then((data) => {
-              trips[i].countryInfo = data;
-              console.log(trips[i]);
-              showTripDetails(parentId, trips[i], "desktop");
-              closeModal(`modal-${parentId}`);
-            });
-          }
+      for (let i = 0; i < trips.length; i++) {
+        if (trips[i].tripId === parentId) {
+          postRequest("http://localhost:8081/countries", {
+            countryName: trips[i].countryName,
+          }).then((data) => {
+            trips[i].countryInfo = data;
+            console.log(trips[i]);
+            showTripDetails(parentId, trips[i], "desktop");
+            closeModal(`modal-${parentId}`);
+          });
         }
-      } else {
-        console.log("Mobile select!");
+      }
+      break;
+    case "save":
+      for (let i = 0; i < trips.length; i++) {
+        if (trips[i].tripId === parentId) {
+          createPdf(trips[i].tripId);
+          console.log(trips[i]);
+        }
       }
       break;
     case "show-more":
@@ -137,7 +142,6 @@ const handleSelection = (e) => {
   const targetId = e.target.id;
   changeContent(targetId);
 };
-
 
 //Loading static images
 loadLandingpageImgs();

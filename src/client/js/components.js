@@ -27,8 +27,8 @@ const buttonsListComponent = () => {
   let buttons = "";
   if (window.screen.width <= 1024) {
     buttons = `<button class="delete"> Delete </button>
-      <button class="show-more"> Show more </button>
-      <button class="select"> Save </button>`;
+      <button class="show-more"> Info </button>
+      <button class="save"> Save </button>`;
   } else {
     buttons = `<button class="delete"> Delete </button>
       <button class="select"> Select </button>`;
