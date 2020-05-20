@@ -72,6 +72,7 @@ const handleSearch = async (e) => {
               trip.weather = data;
             })
             .finally(() => {
+              console.log(trip)
               trips.push(trip);
               updateUI(trip);
               trip = {};

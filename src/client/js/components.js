@@ -122,8 +122,8 @@ const modalComponent = (trip, id) => {
   modal.setAttribute("id", `modal-${id}`);
   modal.innerHTML = `<div class="modal-container">
         <div class="slider-container" id="slider-${trip.tripId}">
-        <span id="prev-button" class="leftBtn"></span>
-        <span id="next-button" class="rightBtn"></span></div>
+        <button id="prev-button" class="leftBtn">prev</button>
+        <button id="next-button" class="rightBtn">next</button></div>
       <div class="modal-full">
         <h1 class="modal-title">
           ${trip.city},${trip.countryName}

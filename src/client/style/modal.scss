@@ -79,34 +79,24 @@
 .leftBtn {
   position: absolute;
   top: 50%;
-  left: 0;
-  margin-left: 10px;
+  left: 15%;
   z-index: 100;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
 }
 
-.leftBtn::after {
-  font-weight: 900;
-  font-size: 2rem;
-  color: white;
-  opacity: 0.5;
-  cursor: pointer;
-}
 
 .rightBtn {
   position: absolute;
   top: 50%;
-  right: 0;
-  margin-right: 10px;
+  right: 50%;
   z-index: 100;
+  border: 0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
 }
 
-.rightBtn::after {
-  font-weight: 900;
-  font-size: 2rem;
-  color: white;
-  opacity: 0.5;
-  cursor: pointer;
-}
 
 @media (min-width: 0px) and (max-width: 750px) {
   .modal-container {

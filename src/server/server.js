@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("dist"));
 
-console.log(__dirname);
+// console.log(__dirname);
 
 //routes
 
@@ -41,12 +41,11 @@ async function getCountries(req, res) {
       countrySend.population = data[0].population;
       countrySend.region = data[0].region;
       countrySend.capital = data[0].capital;
-      console.log(countrySend);
     }
   } catch (error) {
     console.log(error);
   }
-  res.send(countrySend);
+  res.status(201).send(countrySend);
 }
 
 app.post("/location", getLocation);
@@ -64,7 +63,7 @@ async function getLocation(req, res) {
       location.countryCode = data.countryCode;
       location.countryName = data.countryName;
     }
-    res.send(location);
+    res.status(201).send(location);
   } catch (error) {
     res
       .status(400)
@@ -106,7 +105,7 @@ async function getWeather(req, res) {
   } catch (error) {
     console.log(error);
   }
-  res.send(weather);
+  res.status(201).send(weather);
 }
 
 app.post("/images", getImages);
@@ -125,11 +124,13 @@ async function getImages(req, res) {
   } catch (error) {
     console.log(error);
   }
-  res.send(images);
+  res.status(201).send(images);
 }
 
 //starting the server
 const port = 8081;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+module.exports = server;

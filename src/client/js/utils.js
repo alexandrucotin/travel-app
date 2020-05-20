@@ -1,7 +1,6 @@
 import { weatherComponent, buttonsListComponent } from "./components";
 
 const burger = () => {
-  console.log("ZAOOOO")
   const linkList = document.getElementById("link-list");
   if (linkList.style.display === "flex") {
     linkList.style.display = "none";
