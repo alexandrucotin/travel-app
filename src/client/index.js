@@ -51,7 +51,7 @@ const handleSearch = async (e) => {
     const errorMessage = displayError(`${placeMessage} ${datesMessage}`);
     searchBox.appendChild(errorMessage);
   } else {
-    postRequest("http://localhost:8081/location", {
+    postRequest("/location", {
       city: trip.city,
       countryCode: trip.countryCode,
     })
@@ -64,7 +64,7 @@ const handleSearch = async (e) => {
           (trip.longitude = data.longitude),
             (trip.latitude = data.latitude),
             (trip.countryName = data.countryName);
-          postRequest("http://localhost:8081/weather", {
+          postRequest("/weather", {
             latitude: trip.latitude,
             longitude: trip.longitude,
           })
@@ -104,7 +104,7 @@ const handleChoice = async (e) => {
     case "select":
       for (let i = 0; i < trips.length; i++) {
         if (trips[i].tripId === parentId) {
-          postRequest("http://localhost:8081/countries", {
+          postRequest("/countries", {
             countryName: trips[i].countryName,
           }).then((data) => {
             trips[i].countryInfo = data;
@@ -127,7 +127,7 @@ const handleChoice = async (e) => {
     case "show-more":
       for (let i = 0; i < trips.length; i++) {
         if (trips[i].tripId === parentId) {
-          postRequest("http://localhost:8081/countries", {
+          postRequest("/countries", {
             countryName: trips[i].countryName,
           }).then((data) => {
             trips[i].countryInfo = data;
